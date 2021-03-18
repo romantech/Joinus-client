@@ -1,38 +1,109 @@
+* {
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#logo {
+  width: 9rem;
+  vertical-align: middle;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#nav-body {
+  background-color: white;
+  width: 100%;
+  height: 5rem;
+  position: sticky;
+  top: 0;
+  border-bottom: solid 1px rgb(212, 212, 212);
+  display: grid;
+  place-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+#title {
+  font-weight: 700;
+  font-size: 1.8rem;
+  margin-right: auto;
+  margin-left: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#titleName {
+  vertical-align: middle;
+}
+
+#menu {
+  margin: 0.6rem;
+  right: 0;
+  font-weight: 300;
+  position: absolute;
+}
+
+#login,
+#signup {
+  text-decoration: none;
+  border-radius: 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0.4rem;
+  padding: 0.7rem;
+  display: inline-block;
+}
+
+#login {
+  color: #fff;
+  background-color: #5e4955;
+}
+
+#login:hover {
+  color: #000;
+  background-color: #5e495525;
+}
+
+#signup {
+  color: #000;
+  background-color: #f9dc5c;
+}
+
+#signup:hover {
+  color: #000;
+  background-color: #f9dc5c69;
+}
+
+form > div > span:first-child {
+  display: inline-block;
+  width: 12ch;
+  text-align: right;
+  padding: 0 1ch;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='text'],
+input[type='password'] {
+  width: 400px;
+  font-size: 1.1rem;
+  padding: 0.4rem;
+  margin: 0.4rem;
+}
+input[type='search'] {
+  border-radius: 20px;
+  border: 1px solid rgb(153, 153, 153);
+  padding-left: 20px;
+  height: 2.8rem;
+  width: 15rem;
+  margin-right: 0.4rem;
+  outline: none;
+  font-family: 'Malgun Gothic'; /* 한글 베이스라인으로 고정 */
 }
