@@ -1,6 +1,7 @@
 import React from 'react';
-import { withRouter, Link } from 'react-router-dom';
-import Searchbox from './Searchbox';
+import { Link } from 'react-router-dom';
+
+import Searchbox from '../Searchbox';
 
 const Nav = () => {
   return (
@@ -12,10 +13,10 @@ const Nav = () => {
       </span>
       <div id="menu">
         <Searchbox />
-        <Link id="login" to="/login">
+        <Link id="navBtnLeft" to="/login">
           로그인
         </Link>
-        <Link id="signup" to="/signup">
+        <Link id="navBtnRight" to="/signup">
           회원가입
         </Link>
       </div>
@@ -23,4 +24,4 @@ const Nav = () => {
   );
 };
 
-export default withRouter(Nav);
+export default Nav;

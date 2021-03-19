@@ -2,31 +2,31 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import './App.css';
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  withRouter,
-  Link,
-} from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Main from './components/Main';
 import Login from './components/Login';
 import Signup from './components/Signup';
-import Nav from './components/Nav';
+import TempMyPage from './components/TempMyPage'; // 테스트용 마이페이지 임시
+import NavBeforeLogin from './components/Nav/NavBeforeLogin';
+import NavAfterLogin from './components/Nav/NavAfterLogin';
 
 function App() {
+  const isLogin = useSelector(state => state.loginReducer.isLogin);
+
   return (
     <div className="App">
       <Router>
-        <Nav />
+        {isLogin ? <NavAfterLogin /> : <NavBeforeLogin />}
         <Switch>
           <Route exact path="/" component={Main} />
           <Route exact path="/login" component={Login} />
-          <Route exact path="/Signup" component={Signup} />
+          <Route exact path="/signup" component={Signup} />
+          <Route exact path="/mypage" component={TempMyPage} />
         </Switch>
       </Router>
     </div>
   );
 }
 
-export default withRouter(App);
+export default App;

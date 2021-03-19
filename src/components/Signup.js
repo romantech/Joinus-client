@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const Signup = () => {
   const [email, setEmail] = useState('');
@@ -70,4 +70,4 @@ const Signup = () => {
   );
 };
 
-export default withRouter(Signup);
+export default Signup;
