@@ -1,32 +1,41 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import './App.css';
+import './styles/App.css';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
 import Main from './components/Main';
 import Login from './components/Login';
 import Signup from './components/Signup';
-import TempMyPage from './components/TempMyPage'; // 테스트용 마이페이지 임시
-import NavBeforeLogin from './components/Nav/NavBeforeLogin';
-import NavAfterLogin from './components/Nav/NavAfterLogin';
+import Nav from './components/Nav';
+import TempMypage from './components/TempMyPage'; // 임시 마이페이지
 
-function App() {
+export default function App() {
   const isLogin = useSelector(state => state.loginReducer.isLogin);
 
   return (
     <div className="App">
       <Router>
-        {isLogin ? <NavAfterLogin /> : <NavBeforeLogin />}
+        <Nav isLogin={isLogin} />
         <Switch>
           <Route exact path="/" component={Main} />
-          <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
-          <Route exact path="/mypage" component={TempMyPage} />
+          <Route exact path="/login" component={Login} />
+          {/* <Route
+            exact
+            path="/login"
+            render={() => (isLogin ? <TempMypage /> : <Login />)}
+          /> */}
+          <Route
+            exact
+            path="/mypage"
+            render={() => (isLogin ? <TempMypage /> : <Redirect to="/login" />)}
+          />
         </Switch>
       </Router>
     </div>
   );
 }
-
-export default App;

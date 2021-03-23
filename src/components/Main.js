@@ -1,10 +1,12 @@
 import React from 'react';
+import CategoryFilter from './CategoryFilter';
 
 const Main = () => {
   return (
     <div>
-      <h1>홈 화면입니다</h1>
-      <p>이 곳은 홈입니다. 가장 먼저 보이는 페이지입니다.</p>
+      <h2>모두를 위한 프로젝트 플랫폼 JOINUS</h2>
+      <p>해당하는 항목을 선택해보세요</p>
+      <CategoryFilter />
     </div>
   );
 };

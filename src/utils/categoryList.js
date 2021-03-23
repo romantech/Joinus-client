@@ -1,0 +1,25 @@
+/* eslint-disable import/prefer-default-export */
+export default {
+  stacks: [
+    'C',
+    'C#',
+    'C++',
+    'CSS',
+    'Go',
+    'HTML',
+    'Java',
+    'JavaScript',
+    'JSP',
+    'Liquid',
+    'Node.js',
+    'Perl',
+    'PHP',
+    'Python',
+    'Ruby',
+    'Sass',
+    'Solidity',
+    'TypeScript',
+    'XML',
+  ],
+  levels: ['Beginner', 'Intermediate', 'Advanced'],
+};
