@@ -7,6 +7,6 @@ import rootReducer from '../reducers/index.js';
 
 const store = createStore(rootReducer, composeWithDevTools());
 
-console.log(store.getState());
+// console.log(store.getState());
 
 export default store;

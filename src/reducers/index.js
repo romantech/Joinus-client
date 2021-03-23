@@ -1,11 +1,15 @@
 /* eslint-disable import/extensions */
 import { combineReducers } from 'redux';
-import projectListReducer from './projectListReducer.js';
+import newProjectReducer from './newProjectReducer.js';
+import userInfoReducer from './userInfoReducer.js';
+import loginReducer from './loginReducer.js';
+import tokenReducer from './tokenReducer.js';
 
 const rootReducer = combineReducers({
-  projectListReducer,
+  newProjectReducer,
+  userInfoReducer,
+  loginReducer,
+  tokenReducer,
 });
-
-// console.log(rootReducer);
 
 export default rootReducer;

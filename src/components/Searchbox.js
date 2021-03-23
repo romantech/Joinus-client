@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 
 const Searchbox = () => {
   return (
@@ -7,4 +6,4 @@ const Searchbox = () => {
   );
 };
 
-export default withRouter(Searchbox);
+export default Searchbox;
