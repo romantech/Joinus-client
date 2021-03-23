@@ -1,0 +1,153 @@
+.category-container {
+  border: 1px solid #e4e5ed;
+  width: 900px;
+  margin: 10px auto auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper {
+  /* border: 1px solid #e4e5ed; */
+  /* height: 40px; */
+  border-bottom: 1px solid #e4e5ed;
+  display: flex;
+  font-size: 0.95rem;
+}
+
+.contents-left {
+  flex-basis: 168px;
+  background-color: #fafafc;
+  border-right: 1px solid #e4e5ed;
+  padding: 8px 16px 0 20px;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0 18px 0 18px;
+}
+
+.contents-right-fold {
+  flex: 0 1 770px;
+  padding: 2px 12px 2px 12px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 40px;
+  overflow: hidden;
+}
+
+.contents-right-unfold {
+  flex: 0 1 770px;
+  padding: 2px 12px 2px 12px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow: visible;
+}
+
+span.text {
+  line-height: 40px;
+  /* margin: 10px; */
+}
+
+button.unClickedBtn {
+  position: relative;
+  background-color: rgba(255, 255, 255, 0);
+  margin: 6px 12px 6px 0;
+  padding: 0 10px;
+  border-radius: 15px;
+  border: none;
+  line-height: 24px;
+  font-size: 0.9rem;
+  outline: none;
+  cursor: pointer;
+}
+
+button.clickedBtn {
+  position: relative;
+  background-color: #f9dc5c;
+  margin: 6px 12px 6px 0;
+  padding: 0 10px;
+  border-radius: 15px;
+  border: none;
+  line-height: 24px;
+  font-size: 0.9rem;
+  outline: none;
+  cursor: pointer;
+}
+
+button.clickedBtn {
+  position: relative;
+  background-color: #f9dc5c;
+  margin: 6px 12px 6px 0;
+  padding: 0 10px;
+  border-radius: 15px;
+  border: none;
+  line-height: 24px;
+  font-size: 0.9rem;
+  outline: none;
+  cursor: pointer;
+}
+
+.removeTag {
+  position: absolute;
+  right: -4px;
+  top: -4px;
+  width: 14px;
+  height: 14px;
+  color: #9a9ba7;
+  background-color: #fafafc;
+  border: 1px solid #e4e5ed;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  line-height: 11px;
+  font-size: 10px;
+  display: none;
+}
+
+.removeTag-mouseOver {
+  position: absolute;
+  right: -4px;
+  top: -4px;
+  width: 14px;
+  height: 14px;
+  color: #9a9ba7;
+  background-color: #fafafc;
+  border: 1px solid #e4e5ed;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  line-height: 11px;
+  font-size: 10px;
+}
+
+button.unClickedBtn:hover {
+  background-color: #f2f3f7;
+}
+
+button.angleDown {
+  margin: 11px -5px auto;
+  border: none;
+  background-color: transparent;
+  font-size: 1rem;
+  font-weight: 300;
+  cursor: pointer;
+  outline: none;
+  transform: rotate(0deg);
+}
+
+button.angleDown.clicked {
+  margin: 11px -5px auto;
+  border: none;
+  background-color: transparent;
+  font-size: 1rem;
+  font-weight: 300;
+  cursor: pointer;
+  outline: none;
+  transform: rotate(-180deg);
+}
+
+.fa-angle-down:hover {
+  color: rgb(82, 82, 82);
+}
