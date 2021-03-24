@@ -1,93 +1,107 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory, Link } from "react-router-dom";
-import axios from "axios";
-import { setLoginStatus, setUserInfo } from "../actions/index";
-import "../styles/LoginSignup.css";
-import { validateEmail, validatePassword } from "../utils/validate";
-import Modal from "./Modal";
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory, Link } from 'react-router-dom';
+import axios from 'axios';
+import { setLoginStatus, setUserInfo } from '../actions/index';
+import '../styles/LoginSignup.css';
+import { validateEmail, validatePassword } from '../utils/validate';
+import Modal from './Modal';
 
 axios.defaults.withCredentials = true;
 
 const Login = () => {
-  const isLogin = useSelector((state) => state.loginReducer.isLogin);
-
   const history = useHistory();
   const dispatch = useDispatch();
 
   const [singInInfo, setSignInInfo] = useState({
-    userEmail: "",
-    password: "",
-    errorMsg: "",
+    userEmail: '',
+    password: '',
+    isLogin: false,
+    errorMsg: '',
   });
 
   // 로그인 성공시 모달 테스트
   const [modalOpen, setModalOpen] = useState(false);
   const closeModal = () => {
     setModalOpen(false);
-    history.push("/mypage");
+    history.push('/mypage');
   };
 
-  const { userEmail, password, errorMsg } = singInInfo;
+  const { userEmail, password, errorMsg, isLogin } = singInInfo;
 
-  const inputHandler = (key) => (e) => {
+  const inputHandler = key => e => {
     setSignInInfo({
       ...singInInfo,
       [key]: e.target.value,
     });
   };
 
+  console.log('modal: ', modalOpen);
   useEffect(() => {
-    console.log("마운트", "로그인 상태: ", isLogin);
+    console.log('isLogin: ', isLogin);
+    if (isLogin) {
+      return () => dispatch(setLoginStatus(true));
+    }
+  }, [isLogin]);
+
+  useEffect(() => {
     const url = new URL(window.location.href);
-    const authorizationCode = url.searchParams.get("code");
+    const authorizationCode = url.searchParams.get('code');
     if (authorizationCode) {
-      console.log("리로드 실행", authorizationCode);
+      console.log('소셜 로그인 인증코드: ', authorizationCode);
       axios
-        .post("https://server.joinus.fun/user/authlogin", { authorizationCode })
-        .then((res) => {
-          console.log(res);
-          dispatch(setLoginStatus(true));
+        .post('https://server.joinus.fun/user/authlogin', { authorizationCode })
+        .then(res => {
+          // console.log(res);
+          // dispatch(setLoginStatus(true));
           dispatch(setUserInfo(res.data.data));
+          setSignInInfo({
+            ...singInInfo,
+            isLogin: true,
+          });
           setModalOpen(true);
         })
-        .catch((error) => console.log(error.message));
+        .catch(error => console.log(error.message));
     }
   }, []);
 
   const handleLogin = async () => {
-    const joinusServer = "https://server.joinus.fun/user/login";
-    // const testServer = 'https://localhost:4000/signin';
+    const joinusServer = 'https://server.joinus.fun/user/login';
+    const testServer = 'https://localhost:4000/signin';
     if (!userEmail || !password) {
       return setSignInInfo({
         ...singInInfo,
-        errorMsg: "❗️ 이메일과 비밀번호를 모두 입력하세요",
+        errorMsg: '❗️ 이메일과 비밀번호를 모두 입력하세요',
       });
     }
 
     if (!validateEmail(userEmail) || !validatePassword(password)) {
       return setSignInInfo({
         ...singInInfo,
-        errorMsg: "❗️ 이메일 혹은 비밀번호가 올바르지 않습니다",
+        errorMsg: '❗️ 이메일 혹은 비밀번호가 올바르지 않습니다',
       });
     }
 
     try {
       const res = await axios.post(joinusServer, { userEmail, password });
-      dispatch(setLoginStatus(true));
-      console.log(res.data.data)
+      // console.log(res)
+      // dispatch(setLoginStatus(true));
       dispatch(setUserInfo(res.data.data));
+      setSignInInfo({
+        ...singInInfo,
+        isLogin: true,
+      });
       setModalOpen(true);
     } catch (error) {
       // console.dir(error.message);
       return !error.response
         ? setSignInInfo({
             ...singInInfo,
-            errorMsg: "❗️ 서버 오류, 잠시 후 다시 시도해주세요",
+            errorMsg: '❗️ 서버 오류, 잠시 후 다시 시도해주세요',
           })
         : setSignInInfo({
             ...singInInfo,
-            errorMsg: "❗️ 이메일 혹은 비밀번호가 일치하지 않습니다",
+            errorMsg: '❗️ 이메일 혹은 비밀번호가 일치하지 않습니다',
           });
     }
   };
@@ -97,12 +111,13 @@ const Login = () => {
     window.location.assign(GOOGLE_LOGIN_URL);
   };
 
-  const inlineBlockStyle = { display: "inline-block" };
+  const inlineBlockStyle = { display: 'inline-block' };
+  console.log('다시 렌더링');
 
   return (
     <div className="loginContainer">
       <div className="loginBox">
-        <form onSubmit={(e) => e.preventDefault()}>
+        <form onSubmit={e => e.preventDefault()}>
           <h2>Social 로그인</h2>
           <button
             type="button"
@@ -133,19 +148,19 @@ const Login = () => {
               value={userEmail}
               placeholder="이메일을 입력하세요"
               maxLength="30"
-              onChange={inputHandler("userEmail")}
+              onChange={inputHandler('userEmail')}
             />
             <input
               type="password"
               value={password}
               placeholder="비밀번호를 입력하세요"
               maxLength="16"
-              onChange={inputHandler("password")}
+              onChange={inputHandler('password')}
             />
             <button className="btn-login" type="submit" onClick={handleLogin}>
               로그인하기
             </button>
-            {errorMsg ? <div className="alert-box">{errorMsg}</div> : ""}
+            {errorMsg ? <div className="alert-box">{errorMsg}</div> : ''}
             <div className="additionalNotice">
               <div style={inlineBlockStyle}>아직 회원이 아니신가요? </div>
               <Link className="additionalNotice link" to="/signup">
@@ -161,7 +176,7 @@ const Login = () => {
             message="조인어스에 오신걸 환영합니다"
           />
         ) : (
-          ""
+          ''
         )}
       </div>
     </div>

@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import "../styles/CategoryFilter.css";
-import categoryList from "../utils/categoryList";
-import { useDispatch } from "react-redux";
-import { setRenderData } from "../actions/index";
+import React, { useState, useEffect } from 'react';
+import '../styles/CategoryFilter.css';
+import { useDispatch } from 'react-redux';
+import categoryList from '../utils/categoryList';
+import { setRenderData } from '../actions/index';
 
 const CategoryFilter = () => {
   const { stacks, levels } = categoryList;
   const [angleDown, setAngleDown] = useState(true);
-  const [tagMouseOver, setTagMouseOver] = useState("");
+  const [tagMouseOver, setTagMouseOver] = useState('');
 
   const dispatch = useDispatch();
 
@@ -18,21 +18,25 @@ const CategoryFilter = () => {
     renderData: [],
   });
 
-  const handleRenderData = (clicked) => {
+  const handleRenderData = clicked => {
     return Object.entries(clicked)
-      .filter((el) => el[1] !== false)
-      .map((el) => el[0]);
+      .filter(el => el[1] !== false)
+      .map(el => el[0]);
   };
 
   useEffect(() => {
+    console.log('렌더1');
     setClickTag({
       ...clickedTag,
       renderData: handleRenderData(clickedTag.active),
     });
   }, [clickedTag.active]);
 
+  // * 필요성?
   useEffect(() => {
+    console.log('렌더2');
     dispatch(setRenderData(clickedTag.renderData));
+    // return () => dispatch(setRenderData([]));
   }, [clickedTag.renderData]);
 
   const angleDownHandler = () => {
@@ -63,16 +67,17 @@ const CategoryFilter = () => {
           <span className="text">기술 수준</span>
         </div>
         <div className="contents-right-fold">
-          {levels.map((level) => (
+          {levels.map(level => (
             <button
+              type="button"
               key={level}
               className={
-                clickedTag.active[level] ? "clickedBtn" : "unClickedBtn"
+                clickedTag.active[level] ? 'clickedBtn' : 'unClickedBtn'
               }
               onClick={
                 clickedTag.active[level]
-                  ? (e) => clickHander(e, level, false)
-                  : (e) => clickHander(e, level, true)
+                  ? e => clickHander(e, level, false)
+                  : e => clickHander(e, level, true)
               }
               onMouseOver={
                 clickedTag.active[level]
@@ -91,13 +96,13 @@ const CategoryFilter = () => {
                 <span
                   key={level}
                   className={
-                    tagMouseOver[level] ? "removeTag-mouseOver" : "removeTag"
+                    tagMouseOver[level] ? 'removeTag-mouseOver' : 'removeTag'
                   }
                 >
                   x
                 </span>
               ) : (
-                ""
+                ''
               )}
             </button>
           ))}
@@ -107,7 +112,8 @@ const CategoryFilter = () => {
         <div className="contents-left">
           <span className="text">개발 언어</span>
           <button
-            className={angleDown ? "angleDown clicked" : "angleDown"}
+            type="button"
+            className={angleDown ? 'angleDown clicked' : 'angleDown'}
             onClick={angleDownHandler}
           >
             <i className="fas fa-angle-down" aria-hidden="true" />
@@ -115,19 +121,20 @@ const CategoryFilter = () => {
         </div>
         <div
           className={
-            angleDown ? "contents-right-unfold" : "contents-right-fold"
+            angleDown ? 'contents-right-unfold' : 'contents-right-fold'
           }
         >
-          {stacks.map((stack) => (
+          {stacks.map(stack => (
             <button
+              type="button"
               key={stack}
               className={
-                clickedTag.active[stack] ? "clickedBtn" : "unClickedBtn"
+                clickedTag.active[stack] ? 'clickedBtn' : 'unClickedBtn'
               }
               onClick={
                 clickedTag.active[stack]
-                  ? (e) => clickHander(e, stack, false)
-                  : (e) => clickHander(e, stack, true)
+                  ? e => clickHander(e, stack, false)
+                  : e => clickHander(e, stack, true)
               }
               onMouseOver={
                 clickedTag.active[stack]
@@ -146,13 +153,13 @@ const CategoryFilter = () => {
                 <span
                   key={stack}
                   className={
-                    tagMouseOver[stack] ? "removeTag-mouseOver" : "removeTag"
+                    tagMouseOver[stack] ? 'removeTag-mouseOver' : 'removeTag'
                   }
                 >
                   x
                 </span>
               ) : (
-                ""
+                ''
               )}
             </button>
           ))}
