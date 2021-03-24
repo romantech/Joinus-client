@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { setLoginStatus, setUserInfo } from '../actions/index';
 import Searchbox from './Searchbox';
 import '../styles/Nav.css';
 import Modal from './Modal';
 
+axios.defaults.withCredentials = true;
+
 export default function Nav({ isLogin }) {
+  const userInfo = useSelector(state => state.userInfoReducer);
+  const { accessToken, source } = userInfo;
+
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -23,9 +28,19 @@ export default function Nav({ isLogin }) {
     const testServer = 'https://localhost:4000/signout';
 
     axios
-      .post(joinusServer, null, { withCredentials: true })
+      .post(
+        joinusServer,
+        {
+          data: source,
+        },
+        {
+          headers: {
+            authorization: `Bearer ${accessToken}`,
+          },
+        },
+      )
       .then(res => {
-        // console.log('Nav-Logout', res.status);
+        console.log('Nav-Logout', res.status);
         dispatch(setLoginStatus(false));
         dispatch(setUserInfo(''));
         setModalOpen(true);

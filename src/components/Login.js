@@ -54,7 +54,7 @@ const Login = () => {
         .then(res => {
           // console.log(res);
           // dispatch(setLoginStatus(true));
-          dispatch(setUserInfo(res.data.data));
+          dispatch(setUserInfo(res.data));
           setSignInInfo({
             ...singInInfo,
             isLogin: true,
@@ -67,7 +67,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     const joinusServer = 'https://server.joinus.fun/user/login';
-    const testServer = 'https://localhost:4000/signin';
+    // const testServer = 'https://localhost:4000/signin';
     if (!userEmail || !password) {
       return setSignInInfo({
         ...singInInfo,
@@ -107,8 +107,17 @@ const Login = () => {
   };
 
   const socialLoginHandler = () => {
-    const GOOGLE_LOGIN_URL = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=928822058916-4cl3iej3veoov69s7jq64limd02bpdak.apps.googleusercontent.com&redirect_uri=https://localhost:3000/login&scope=profile`;
-    window.location.assign(GOOGLE_LOGIN_URL);
+    const endPoint = 'https://accounts.google.com/o/oauth2/auth?';
+    const clientId =
+      'client_id=928822058916-4cl3iej3veoov69s7jq64limd02bpdak.apps.googleusercontent.com';
+    const redirectUri = '&redirect_uri=https://localhost:3000/login'; // TODO 배포시 수정 요망
+    const responseType = '&response_type=code';
+    const accessType = '&access_type=offline';
+    const scope = '&scope=email%20profile';
+    window.location.assign(
+      endPoint + clientId + redirectUri + responseType + accessType + scope,
+    );
+    // access_type을 offline으로 설정해야 refresh token 발급 가능(유저가 브라우저에 머무르지 않은 상태여도 토큰 발행 가능)
   };
 
   const inlineBlockStyle = { display: 'inline-block' };

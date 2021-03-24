@@ -1,7 +1,11 @@
-import {useState} from "react";
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable camelcase */
+import { useState } from 'react';
 
 export default function MyProfile({ userInfoDetail }) {
-  const [userPhoto, setuserPhoto] = useState("https://upload.wikimedia.org/wikipedia/commons/7/7e/Circle-icons-profile.svg");
+  const [userPhoto, setuserPhoto] = useState(
+    'https://upload.wikimedia.org/wikipedia/commons/7/7e/Circle-icons-profile.svg',
+  );
   return (
     <div className="myProfile-body">
       <div className="myProfile-border">
@@ -10,7 +14,7 @@ export default function MyProfile({ userInfoDetail }) {
           <div>이메일 : {userInfoDetail.userEmail}</div>
           <div className="tag_lists">
             개발언어 :
-            {userInfoDetail.stack.map((stack_list) => {
+            {userInfoDetail.stack.map(stack_list => {
               return (
                 <div className="tag" key={stack_list}>
                   {stack_list}
@@ -20,19 +24,17 @@ export default function MyProfile({ userInfoDetail }) {
           </div>
           <h4>포트폴리오</h4>
           <div>
-            {userInfoDetail.portfolio.map((link) => {
+            {userInfoDetail.portfolio.map(link => {
               return (
                 <div key={link}>
-                <a href={link} >
-                  {link}
-                </a>
+                  <a href={link}>{link}</a>
                 </div>
               );
             })}
           </div>
         </div>
         <div className="myProfile-right">
-          <img height="100%" src={userPhoto} width="100%"></img>
+          <img height="100%" src={userPhoto} width="100%" />
         </div>
       </div>
     </div>

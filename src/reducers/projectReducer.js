@@ -6,9 +6,7 @@ import { initialState } from './initialState';
 const projectReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_PROJECTLIST:
-      return Object.assign({}, state, {
-        projects: action.payload
-      })
+      return { ...state, projects: action.payload };
     default:
       return state;
   }
