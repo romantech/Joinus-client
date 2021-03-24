@@ -1,3 +1,4 @@
+/* eslint-disable react/button-has-type */
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/jsx-pascal-case */
 /* eslint-disable camelcase */

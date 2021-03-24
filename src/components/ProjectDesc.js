@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
 import '../styles/ProjectDesc.css';

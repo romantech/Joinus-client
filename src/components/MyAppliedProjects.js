@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-key */
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
@@ -53,7 +54,9 @@ export default function MyAppliedProjects({ userInfoDetail }) {
             return (
               <div className="volunteer_lists">
                 <h3>{list.projectName}</h3>
-                <button onClick={() => setShow(true)}>지원취소</button>
+                <button type="button" onClick={() => setShow(true)}>
+                  지원취소
+                </button>
               </div>
             );
           })}
