@@ -1,5 +1,5 @@
 import React from 'react';
-import CategoryFilter from './CategoryFilter';
+import CategoryFilter from '../components/CategoryFilter';
 
 const Main = () => {
   return (

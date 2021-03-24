@@ -6,7 +6,9 @@ const TempMyPage = () => {
   return (
     <div>
       <h1>임시 마이페이지</h1>
-      <Link to="login">로그인 테스트</Link>
+      <Link to="/login">로그인 테스트</Link>
+      <br />
+      <Link to="/signup">회원가입 테스트</Link>
     </div>
   );
 };

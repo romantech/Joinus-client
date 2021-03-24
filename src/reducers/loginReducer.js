@@ -1,6 +1,6 @@
 // 액션 임포트
-import { IS_LOGIN } from '../actions/index.js';
-import { initialState } from './initialState.js';
+import { IS_LOGIN } from '../actions/index';
+import { initialState } from './initialState';
 
 // 이니셜 상태 임포트
 const loginReducer = (state = initialState, action) => {
