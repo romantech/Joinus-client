@@ -1,42 +1,42 @@
-import React, { useState ,useEffect} from "react";
-import "./Project.css";
-import axios from "axios";
-import ProjectList from './ProjectList'
+/* eslint-disable react/no-array-index-key */
+import React, { useEffect } from 'react';
+import '../styles/ProjectListMain.css'; // 메인 페이지 스타일
+import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import ProjectList from './ProjectList';
+import { setProjectList } from '../actions/index';
 
 export default function ProjectAll() {
-  
-  const [projectAll, setProjectAll] = useState('');
-
-  const joinusServer = 'https://server.joinus.fun/project/all'
-
+  const projects = useSelector(state => state.projectReducer.projects);
+  const isLogin = useSelector(state => state.loginReducer.isLogin);
+  const dispatch = useDispatch();
+  console.log('projects', projects);
+  const joinusServer = 'https://server.joinus.fun/project/all';
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        setProjectAll('');
-        const response = await axios.get(
-          joinusServer
-        );
-        setProjectAll(response.data); 
+        const response = await axios.get(joinusServer);
+        dispatch(setProjectList(response.data.data));
       } catch (e) {
-        console.log(e)
+        console.log(e);
       }
     };
     fetchProjects();
   }, []);
 
-  return (
-    (!projectAll) ?(<div>loading</div>)
-    :
-    (<div className="project">
-      <div className='project list'>
-        <h1>프로젝트 리스트</h1>
-          {console.log("프로젝트리스트",projectAll.data)}
-          {projectAll.data.map((project, idx)=> <ProjectList project={project} key={idx}/>)} 
-  
+  return !projects ? (
+    <div>Loading...</div>
+  ) : (
+    <div className="projects">
+      <h2>프로젝트 리스트</h2>
+      {isLogin ? <Link to="/create">프로젝트 생성하기</Link> : ''}
+      <div className="project-list">
+        {console.log('프로젝트리스트', projects)}
+        {projects.map((project, idx) => (
+          <ProjectList project={project} key={idx} />
+        ))}
       </div>
-      <Link to="/create">프로젝트 생성하기</Link>
-    </div>)
-
-  )
+    </div>
+  );
 }

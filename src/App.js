@@ -12,10 +12,10 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import Nav from './components/Nav';
 import Mypage from './pages/Mypage';
-import TempMypage from './components/TempMyPage'; // 임시 마이페이지
+import ProjectDetail from './components/ProjectDetail';
+import ProjectCreate from './components/ProjectCreate';
 
 export default function App() {
-  // console.log('App.js 렌더');
   const isLogin = useSelector(state => state.loginReducer.isLogin);
   return (
     <div className="App">
@@ -23,6 +23,8 @@ export default function App() {
         <Nav isLogin={isLogin} />
         <Switch>
           <Route exact path="/" component={Main} />
+          <Route exact path="/detail/:id" component={ProjectDetail} />
+          <Route exact path="/create" component={ProjectCreate} />
           <Route
             exact
             path={['/login', '/mypage', '/signup']}
@@ -31,7 +33,7 @@ export default function App() {
                 return isLogin ? <Redirect to="/mypage" /> : <Login />;
               if (path === '/signup')
                 return isLogin ? <Redirect to="/mypage" /> : <Signup />;
-              return isLogin ? <TempMypage /> : <Redirect to="/login" />;
+              return isLogin ? <Mypage /> : <Redirect to="/login" />;
             }}
           />
         </Switch>

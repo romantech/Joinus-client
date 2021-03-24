@@ -1,6 +1,9 @@
-.project {
+/* .project {
   border: black solid 1px;
   padding: 5px;
+  display: flex;
+  flex-direction: column;
+  width: 900px;
 }
 .btn {
   position: relative;
@@ -41,7 +44,7 @@ form > div > span:first-child {
   padding: 0 1ch;
 }
 
-input[type="text"] {
+input[type='text'] {
   display: flex;
   width: 400px;
   font-size: 1.1rem;
@@ -55,4 +58,4 @@ textarea {
   font-size: 1.1rem;
   padding: 0.4rem;
   margin: 0.4rem;
-}
+} */

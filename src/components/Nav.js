@@ -23,7 +23,7 @@ export default function Nav({ isLogin }) {
     const testServer = 'https://localhost:4000/signout';
 
     axios
-      .post(joinusServer, null, { withCredentials: true })
+      .post(testServer, null, { withCredentials: true })
       .then(res => {
         // console.log('Nav-Logout', res.status);
         dispatch(setLoginStatus(false));

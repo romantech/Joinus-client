@@ -1,59 +1,76 @@
-import React, { useState ,useEffect } from "react";
-import "./Project.css";
-import ProjectDesc from "./ProjectDesc"
-import ProjectAttend from "./ProjectAttend"
-import axios from "axios";
+/* eslint-disable react/button-has-type */
+import React, { useState, useEffect } from 'react';
+import '../styles/Project.css';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import ProjectDesc from './ProjectDesc';
 
-export default function ProjectDetail() {
-
+export default function ProjectDetail({ match }) {
   const [projectInfo, setProjectInfo] = useState('');
-  const [buttonPopup, setButtonPopup] = useState(false); 
-
-  const projectId = document.location.search.split("?")[1];
-  console.log("프로젝트id", document.location.search.split("?")[1])
-  
-  const joinusServer = 'https://server.joinus.fun/project/info'
-
+  const { userId, accessToken } = useSelector(
+    state => state.userInfoReducer.userInfo,
+  );
+  const isLogin = useSelector(state => state.loginReducer.isLogin);
+  const [isToggle, setIsToggle] = useState(true);
+  const projectId = match.params.id;
+  const joinusServer = 'https://server.joinus.fun/project/info';
   useEffect(() => {
     const fetchProjectInfo = async () => {
       try {
-        setProjectInfo('');
-        const response = await axios.post(
-          joinusServer,{
-            projectId : projectId
-          }
-        );
-        setProjectInfo(response.data); 
+        const response = await axios.post(joinusServer, {
+          projectId,
+        });
+        setProjectInfo(response.data);
       } catch (e) {
-        console.log('에러',e)
+        console.log('에러', e);
       }
     };
     fetchProjectInfo();
   }, []);
-
-
-  return (
-    (!projectInfo) ? (<div>loading</div>)
-    :
-    (<div className="project">
-      {/* 참가하기 버튼  */}
-      <div className="project btn">
-        <button className="btn project-attend" onClick={()=>setButtonPopup(true)}>참가 하기</button>
-        <ProjectAttend trigger={buttonPopup} setTrigger={setButtonPopup} projectInfo = {projectInfo.data}>
-        </ProjectAttend>
-      </div>
-      
-      <div className = "project description">
+  const attend = async () => {
+    await axios({
+      url: 'https://server.joinus.fun/project/attend',
+      method: 'POST',
+      headers: {
+        authorization: accessToken,
+      },
+      data: {
+        userId,
+        projectId,
+      },
+    }).then(() => {
+      alert('참가 완료');
+    });
+  };
+  return !projectInfo ? (
+    <div>loading</div>
+  ) : (
+    <div className="project">
+      <Link to="/">리스트로 돌아가기</Link>
+      {!isLogin ? (
+        <div> 로그인 후 참가 가능합니다.</div>
+      ) : (
+        <div className="project btn">
+          <button
+            className="btn project-attend"
+            onClick={() => {
+              attend();
+            }}
+          >
+            참가하기
+            {/* {isToggle ? '참가하기' :'참가완료'}  */}
+          </button>
+        </div>
+      )}
+      <div className="project description">
         <h3> 프로젝트 상세 페이지 </h3>
-        {console.log("프로젝트상세내용",projectInfo.data)}
-        {<ProjectDesc project={projectInfo.data}/>} 
-        
+        <ProjectDesc project={projectInfo.data} />
       </div>
-
       <div className="project qna">
         <h3>질의응답</h3>
-          <p className="project-qna">질의 응답..</p>
+        <div className="project-qna">질의 응답..</div>
       </div>
-    </div>)
+    </div>
   );
 }

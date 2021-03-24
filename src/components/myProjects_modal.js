@@ -1,6 +1,7 @@
-import React from "react";
+/* eslint-disable camelcase */
+import React from 'react';
 
-export default function myProjects_modal(props) {
+export default function MyProjects_modal(props) {
   return props.trigger ? (
     <div className="popup">
       <div className="popup_inner">
@@ -11,6 +12,6 @@ export default function myProjects_modal(props) {
       </div>
     </div>
   ) : (
-    ""
+    ''
   );
 }
