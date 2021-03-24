@@ -42,15 +42,6 @@ export default function Mypage(){
     }
   }
 
-  // const handleDelete = (projectId) => {
-  //   for (let i = 0; i < project_list.length; i++) {
-  //     if (project_list[i].projectId === projectId) {
-  //       setproject_list([...project_list.slice(0, i), ...project_list.slice(i + 1)]);
-  //       break;
-  //     }
-  //   }
-  // }
-  
   return (
     <div>
       <MyProfile userInfo ={userInfo} />

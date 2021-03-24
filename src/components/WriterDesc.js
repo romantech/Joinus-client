@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function WriterDesc({ writer }) {
-// 작성자 정보가져오기 
+   
   return (
     <div key={writer.id} className="writer">
       <p className="writer-name"> 작성자 이름: {writer.name}</p>
