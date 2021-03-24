@@ -1,0 +1,14 @@
+.writerContainer {
+  border: 1px solid red;
+  width: 400px;
+  margin: 10px auto auto;
+  display: flex;
+  flex-direction: column;
+}
+.projectContainer {
+  border: 1px solid red;
+  width: 400px;
+  margin: 10px auto auto;
+  display: flex;
+  flex-direction: column;
+}

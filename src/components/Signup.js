@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
 import axios from 'axios';
-import { setLoginStatus, setToken } from '../actions/index';
+import { setLoginStatus, setUserInfo } from '../actions/index';
 import {
   validateEmail,
   validatePassword,
@@ -51,9 +51,10 @@ const Signup = () => {
           password,
         })
         .then(res => {
-          dispatch(setToken(res.data.data.accessToken));
+          dispatch(setUserInfo(res.data.data));
         })
         .catch(error => console.log(error.message));
+      return () => dispatch(setLoginStatus(true));
     }
   }, [isLogin]);
 
@@ -111,7 +112,7 @@ const Signup = () => {
         stacks,
       });
       // console.log(res);
-      dispatch(setLoginStatus(true));
+
       setSignUpInfo({
         ...singUpInfo,
         isLogin: true,

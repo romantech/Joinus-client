@@ -1,0 +1,35 @@
+.projects {
+  border: 1px solid #e4e5ed;
+  width: 900px;
+  margin: 10px auto 30px;
+  display: flex;
+  flex-direction: column;
+}
+.project-list {
+  margin: 10px auto auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  overflow: auto;
+  width: 900px;
+  height: 900px;
+}
+.project img {
+  width: 200px;
+  height: 120px;
+  object-fit: cover;
+}
+.project-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+a {
+  text-decoration: none;
+}
+.project {
+  width: 200px;
+  margin: 10px;
+  border: 1px solid #e4e5ed;
+}

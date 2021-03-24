@@ -2,8 +2,8 @@
 export const ADD_NEW_PROJECT = "ADD_NEW_PROJECT";
 export const SET_USER_INFO = "LOGIN_USER_INFO";
 export const IS_LOGIN = "IS_LOGIN";
-export const SET_TOKEN = "SET_TOKEN";
 export const SET_TAG = "SET_TAG";
+export const SET_PROJECTLIST = "SET_PROJECTLIST";
 
 // * 액션 생성 함수
 export const addNewProject = (
@@ -33,18 +33,16 @@ export const setLoginStatus = (boolean) => {
   };
 };
 
-export const setToken = (accessToken) => {
-  return {
-    type: SET_TOKEN,
-    payload: { accessToken },
-  };
-};
-
 export const setRenderData = (renderData) => {
   return {
     type: SET_TAG,
-    payload: {
-      renderData: [renderData],
-    },
+    payload: renderData,
+  };
+};
+
+export const setProjectList = (projectList) => {
+  return {
+    type: SET_PROJECTLIST,
+    payload: projectList,
   };
 };

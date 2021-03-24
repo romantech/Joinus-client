@@ -1,15 +1,14 @@
 import React,{useState} from "react";
-import "./Project.css";
+import "../styles/Project.css";
 import axios from "axios";
-import {initialState} from "../reducers/initialState"
 import WriterDesc from "./WriterDesc";
 import { useHistory } from "react-router-dom";
-
-const accessToken = process.env.ACCESS_TOKEN;
+import { useDispatch, useSelector  } from 'react-redux';
+import CategoryFilter from './CategoryFilter'
 
 export default function ProjectCreate() {
-
-  const [users, ] = useState(initialState.users);
+  const userInfo = useSelector(state => state.userInfoReducer.userInfo);
+  const dispatch = useDispatch();
 
   const [ errorMessage, setErrorMessage ] = useState("")
   const [ projectInfo, setProjectInfo ] = useState({
@@ -20,35 +19,23 @@ export default function ProjectCreate() {
     image_urls:""
     }
   )
-
   const handleInputValue = (key) => (e) => {
     console.log(e.target.value)  
     setProjectInfo(Object.assign({},projectInfo, {[key]: e.target.value }));
   };
-
-  // const readInputFile = (key) => (e) => {
-  //   console.log(e.target.files)  
-  //   setProjectInfo(Object.assign({},projectInfo, {[key]: e.target.files }));
-  // };
-
   const history = useHistory();
-
   const handleCreate = () =>{
-
     if(!projectInfo.projectName || !projectInfo.attendExpired || !projectInfo.projectDesc) {
-      console.log(1)
-      setErrorMessage("프로젝트 설명 모두 입력하세요")
+      setErrorMessage("프로젝트의 설명을 모두 입력하세요")
       return;
     }
     else {
       setErrorMessage("")
     }
-
     const joinusServer = 'https://server.joinus.fun/project/create'
-    //! userId 수정 해야 함
     axios
       .post(joinusServer, {
-        userId: 1,
+        userId: userInfo.userId,
         level: "",
         projectName: projectInfo.projectName,
         projectStacks: projectInfo.projectStacks,
@@ -57,7 +44,7 @@ export default function ProjectCreate() {
         image_urls: projectInfo.image_urls
       },
       { headers:{
-        Authorization: `Bearer ${accessToken}`,
+        Authorization: `Bearer ${userInfo.accessToken}`,
         "Content-Type": "application/json" 
       }}
       )
@@ -67,20 +54,12 @@ export default function ProjectCreate() {
       .catch((err) => { 
         console.log(err);
       });
-
-    // console.log("프로젝트명:" ,projectInfo.projectName)
-    // console.log("사용스택:" ,projectInfo.projectStacks)
-    // console.log("참가 기한:" ,projectInfo.attendExpired)
-    // console.log("프로젝트 설명:" ,projectInfo.projectDesc)
-    // console.log("생성")
   }
-
-
   return (
     <div className="project">
       <h1> 프로젝트 생성 페이지 </h1>
       <form className="project describtion">
-        <h3> 프로젝트 설명 </h3>
+        <h3> 프로젝트에 대하여 자세히 적어주세요 </h3>
         <div>모든 항목은 필수입니다</div>
         <div>
           <span> 프로젝트명</span>
@@ -88,9 +67,10 @@ export default function ProjectCreate() {
           onChange={handleInputValue("projectName")}></input> 
         </div>
         <div>
-          <span> 사용 스택</span>
+        <span> 사용 스택</span>
           <input type="text" className="project-tag"
           onChange={handleInputValue("projectStacks")}></input>
+         {/* <CategoryFilter /> */}
         </div>
         <div>
           <span> 신청 기한 </span>
@@ -106,15 +86,12 @@ export default function ProjectCreate() {
           <span>이미지</span>
           <img className="image"/> 
           이미지 파일
-
         </div>
       </form>
-
       <div className = "project writer">
         <h3>작성자 정보 </h3>
-          {users.map((writer,id) => <WriterDesc writer={writer} key={id}/>)}
+          {<WriterDesc writer={userInfo}/>}
       </div>
-
       <div className="project btn">
         <button className="btn project-create" onClick={handleCreate}> 프로젝트 생성 </button>
       </div>
@@ -124,7 +101,6 @@ export default function ProjectCreate() {
           {errorMessage}
         </div> 
       : ''}
-
     </div>
   );
 }

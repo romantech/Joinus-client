@@ -1,16 +1,24 @@
 import { combineReducers } from "redux";
-import newProjectReducer from "./newProjectReducer.js";
-import userInfoReducer from "./userInfoReducer.js";
-import loginReducer from "./loginReducer.js";
-import tokenReducer from "./tokenReducer.js";
-import tagDataReducer from "./tagDataReducer.js";
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import newProjectReducer from "./newProjectReducer";
+import userInfoReducer from "./userInfoReducer";
+import loginReducer from "./loginReducer";
+import tagDataReducer from "./tagDataReducer";
+import projectReducer from "./projectReducer";
+
+const persistConfig = {
+  key: "root",
+  storage,
+  whitelist: ["loginReducer", "userInfoReducer"],
+};
 
 const rootReducer = combineReducers({
   newProjectReducer,
   userInfoReducer,
   loginReducer,
-  tokenReducer,
   tagDataReducer,
+  projectReducer,
 });
 
-export default rootReducer;
+export default persistReducer(persistConfig, rootReducer);
