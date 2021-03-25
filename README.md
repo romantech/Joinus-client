@@ -48,40 +48,44 @@ JOINUS란 ?
 # 🔨 어떻게 돌아가는 건가요?
 
 ### 메인페이지/워크플로우
-![main_page](https://user-images.githubusercontent.com/70802487/112437256-1909ad80-8d8a-11eb-9e39-9809caffceaf.jpg)
+![Main_Flow](https://user-images.githubusercontent.com/70802487/112442390-1f4e5880-8d8f-11eb-959e-0fd260ad9b6b.jpg)
+
 
 ### 프로젝트 상세페이지/워크플로우
-![project_detail](https://user-images.githubusercontent.com/70802487/112437408-448c9800-8d8a-11eb-98f3-29f7599c0d52.jpg)
+![ProjectDetail_Flow](https://user-images.githubusercontent.com/70802487/112442270-02b22080-8d8f-11eb-8cbb-e49d174452c3.jpg)
 
 ### 프로젝트 제작페이지/워크플로우
-![project_create](https://user-images.githubusercontent.com/70802487/112437487-5a9a5880-8d8a-11eb-8cfc-2739bfadc5e6.jpg)
+![ProjectMake_Flow](https://user-images.githubusercontent.com/70802487/112442209-f4640480-8d8e-11eb-9ed6-fbf547e6a17a.jpg)
 
 ### 프로젝트 유저정보페이지/워크플로우
-![myproject_page](https://user-images.githubusercontent.com/70802487/112437495-5c641c00-8d8a-11eb-88bf-8c2b36d29a88.jpg)
+![Mypage_Flow](https://user-images.githubusercontent.com/70802487/112442329-1067a600-8d8f-11eb-88df-377e92aaddf6.jpg)
 
 ### 프로젝트 지원자목록/워크플로우
-![volunteer_list](https://user-images.githubusercontent.com/70802487/112437508-5f5f0c80-8d8a-11eb-8561-fe68e1073288.jpg)
+![AttendList_Flow](https://user-images.githubusercontent.com/70802487/112442461-32f9bf00-8d8f-11eb-8229-a3682d0028b9.jpg)
 
 ### 프로젝트 참여페이지/워크플로우
-![attend_project](https://user-images.githubusercontent.com/70802487/112437515-60903980-8d8a-11eb-9de5-ba4318b60667.jpg)
+![Apply_Flow](https://user-images.githubusercontent.com/70802487/112442505-3e4cea80-8d8f-11eb-85e0-c64fc32eeaad.jpg)
 
 ### 프로젝트 회원가입/워크플로우
-![signup_page](https://user-images.githubusercontent.com/70802487/112437519-6259fd00-8d8a-11eb-9855-fe1a8d22a133.jpg)
+![Signup_Flow](https://user-images.githubusercontent.com/70802487/112442157-e57d5200-8d8e-11eb-9d1b-6fcf0098fa06.jpg)
+
 
 ### 프로젝트 로그인/워크플로우
-![login_page](https://user-images.githubusercontent.com/70802487/112437525-638b2a00-8d8a-11eb-8973-42f3c15f9a84.jpg)
+![Login_Flow](https://user-images.githubusercontent.com/70802487/112442434-29705700-8d8f-11eb-8ae3-7747866e06f5.jpg)
+
 
 
 
 
 # 🗣 저희팀을 소개합니다.
 
+<img width="1266" alt="iShot2021-03-25 17 17 57" src="https://user-images.githubusercontent.com/70802487/112441021-507a5900-8d8e-11eb-8f2b-ee6ae6c5aa1b.png">
+
 | [**김재우**](https://github.com/stepperweb)    | **🚩 Frontend**   |
 | ---------------------------------------------- | ---------------- |
 | [**마상희**](https://github.com/Ma-SangHee)     | **🚩 Frontend** |
 | [**장요한**](https://github.com/romantech)     | **🚩 Frontend**   |
 | [**이창민**](https://github.com/G-Ryu) | **🏁 Backend** |
-
 
 # 세부사항
 
