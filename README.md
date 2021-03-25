@@ -51,7 +51,7 @@ JOINUS란 ?
 ![Main_Flow](https://user-images.githubusercontent.com/70802487/112442390-1f4e5880-8d8f-11eb-959e-0fd260ad9b6b.jpg)
 
 
-### 프로젝트 상세페이지/워크플로우
+### 프로젝트 참가페이지/워크플로우
 ![ProjectDetail_Flow](https://user-images.githubusercontent.com/70802487/112442270-02b22080-8d8f-11eb-8cbb-e49d174452c3.jpg)
 
 ### 프로젝트 제작페이지/워크플로우
@@ -63,7 +63,7 @@ JOINUS란 ?
 ### 프로젝트 지원자목록/워크플로우
 ![AttendList_Flow](https://user-images.githubusercontent.com/70802487/112442461-32f9bf00-8d8f-11eb-8229-a3682d0028b9.jpg)
 
-### 프로젝트 참여페이지/워크플로우
+### 프로젝트 신청팝업/워크플로우
 ![Apply_Flow](https://user-images.githubusercontent.com/70802487/112442505-3e4cea80-8d8f-11eb-85e0-c64fc32eeaad.jpg)
 
 ### 프로젝트 회원가입/워크플로우
