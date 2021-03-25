@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useHistory, Link } from 'react-router-dom';
-import axios from 'axios';
-import { setLoginStatus, setUserInfo } from '../actions/index';
-import '../styles/LoginSignup.css';
-import { validateEmail, validatePassword } from '../utils/validate';
-import Modal from './Modal';
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useHistory, Link } from "react-router-dom";
+import axios from "axios";
+import { setLoginStatus, setUserInfo } from "../actions/index";
+import "../styles/LoginSignup.css";
+import { validateEmail, validatePassword } from "../utils/validate";
+import Modal from "./Modal";
 
 axios.defaults.withCredentials = true;
 
@@ -14,31 +14,28 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const [singInInfo, setSignInInfo] = useState({
-    userEmail: '',
-    password: '',
+    userEmail: "",
+    password: "",
     isLogin: false,
-    errorMsg: '',
+    errorMsg: "",
   });
 
-  // 로그인 성공시 모달 테스트
   const [modalOpen, setModalOpen] = useState(false);
   const closeModal = () => {
     setModalOpen(false);
-    history.push('/');
+    history.push("/");
   };
 
   const { userEmail, password, errorMsg, isLogin } = singInInfo;
 
-  const inputHandler = key => e => {
+  const inputHandler = (key) => (e) => {
     setSignInInfo({
       ...singInInfo,
       [key]: e.target.value,
     });
   };
 
-  console.log('modal: ', modalOpen);
   useEffect(() => {
-    console.log('isLogin: ', isLogin);
     if (isLogin) {
       return () => dispatch(setLoginStatus(true));
     }
@@ -46,46 +43,46 @@ const Login = () => {
 
   useEffect(() => {
     const url = new URL(window.location.href);
-    const authorizationCode = url.searchParams.get('code');
+    const authorizationCode = url.searchParams.get("code");
     if (authorizationCode) {
-      console.log('소셜 로그인 인증코드: ', authorizationCode);
-      axios
-        .post('https://server.joinus.fun/user/authlogin', { authorizationCode })
-        .then(res => {
-          // console.log(res);
-          // dispatch(setLoginStatus(true));
-          dispatch(setUserInfo(res.data.data));
+      axios({
+        url: "https://server.joinus.fun/user/authlogin",
+        method: "POST",
+        data: {
+          authorizationCode: authorizationCode,
+        },
+        withCredentials: true,
+      })
+        .then((res) => {
+          dispatch(setUserInfo(res.data));
           setSignInInfo({
             ...singInInfo,
             isLogin: true,
           });
           setModalOpen(true);
         })
-        .catch(error => console.log(error.message));
+        .catch((error) => console.log(error.message));
     }
   }, []);
 
   const handleLogin = async () => {
-    const joinusServer = 'https://server.joinus.fun/user/login';
-    const testServer = 'https://localhost:4000/signin';
+    const joinusServer = "https://server.joinus.fun/user/login";
     if (!userEmail || !password) {
       return setSignInInfo({
         ...singInInfo,
-        errorMsg: '❗️ 이메일과 비밀번호를 모두 입력하세요',
+        errorMsg: "❗️ 이메일과 비밀번호를 모두 입력하세요",
       });
     }
 
     if (!validateEmail(userEmail) || !validatePassword(password)) {
       return setSignInInfo({
         ...singInInfo,
-        errorMsg: '❗️ 이메일 혹은 비밀번호가 올바르지 않습니다',
+        errorMsg: "❗️ 이메일 혹은 비밀번호가 올바르지 않습니다",
       });
     }
 
     try {
       const res = await axios.post(joinusServer, { userEmail, password });
-      // console.log(res)
-      // dispatch(setLoginStatus(true));
       dispatch(setUserInfo(res.data.data));
       setSignInInfo({
         ...singInInfo,
@@ -93,31 +90,30 @@ const Login = () => {
       });
       setModalOpen(true);
     } catch (error) {
-      // console.dir(error.message);
       return !error.response
         ? setSignInInfo({
             ...singInInfo,
-            errorMsg: '❗️ 서버 오류, 잠시 후 다시 시도해주세요',
+            errorMsg: "❗️ 서버 오류, 잠시 후 다시 시도해주세요",
           })
         : setSignInInfo({
             ...singInInfo,
-            errorMsg: '❗️ 이메일 혹은 비밀번호가 일치하지 않습니다',
+            errorMsg: "❗️ 이메일 혹은 비밀번호가 일치하지 않습니다",
           });
     }
   };
 
   const socialLoginHandler = () => {
-    const GOOGLE_LOGIN_URL = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=928822058916-4cl3iej3veoov69s7jq64limd02bpdak.apps.googleusercontent.com&redirect_uri=https://localhost:3000/login&scope=profile`;
+    const GOOGLE_LOGIN_URL =
+      "https://accounts.google.com/o/oauth2/auth?client_id=928822058916-4cl3iej3veoov69s7jq64limd02bpdak.apps.googleusercontent.com&redirect_uri=https://localhost:3000/login&scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile&response_type=code&access_type=offline";
     window.location.assign(GOOGLE_LOGIN_URL);
   };
 
-  const inlineBlockStyle = { display: 'inline-block' };
-  console.log('다시 렌더링');
+  const inlineBlockStyle = { display: "inline-block" };
 
   return (
     <div className="loginContainer">
       <div className="loginBox">
-        <form onSubmit={e => e.preventDefault()}>
+        <form onSubmit={(e) => e.preventDefault()}>
           <h2>Social 로그인</h2>
           <button
             type="button"
@@ -148,19 +144,19 @@ const Login = () => {
               value={userEmail}
               placeholder="이메일을 입력하세요"
               maxLength="30"
-              onChange={inputHandler('userEmail')}
+              onChange={inputHandler("userEmail")}
             />
             <input
               type="password"
               value={password}
               placeholder="비밀번호를 입력하세요"
               maxLength="16"
-              onChange={inputHandler('password')}
+              onChange={inputHandler("password")}
             />
             <button className="btn-login" type="submit" onClick={handleLogin}>
               로그인하기
             </button>
-            {errorMsg ? <div className="alert-box">{errorMsg}</div> : ''}
+            {errorMsg ? <div className="alert-box">{errorMsg}</div> : ""}
             <div className="additionalNotice">
               <div style={inlineBlockStyle}>아직 회원이 아니신가요? </div>
               <Link className="additionalNotice link" to="/signup">
@@ -176,7 +172,7 @@ const Login = () => {
             message="조인어스에 오신걸 환영합니다"
           />
         ) : (
-          ''
+          ""
         )}
       </div>
     </div>

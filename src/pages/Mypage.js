@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import MyProfile from "../components/MyProfile";
-import MyProject from "../components/MyProjects"
-import MyAppliedProjects from "../components/MyAppliedProjects"
-import "../styles/MyPage.css"; 
+import MyProject from "../components/MyProjects";
+import MyAppliedProjects from "../components/MyAppliedProjects";
+import "../styles/MyPage.css";
 export default function Mypage() {
   const [userInfoDetail, setuserInfoDetail] = useState();
   const [myData, setmyData] = useState(false);
@@ -22,10 +22,12 @@ export default function Mypage() {
         userId: userId,
         source: source,
       },
+      withCredentials: true,
     }).then((res) => {
       setuserInfoDetail(res.data.data);
     });
   }, [myData]);
+  
   const ProjectDelete = async (projectId) => {
     if (window.confirm("삭제하시겠습니다")) {
       await axios({
@@ -43,22 +45,27 @@ export default function Mypage() {
       });
     }
   };
+
   return (
     <div>
-      {userInfoDetail ?
-      <div>
-        <div> 
-        <MyProfile userInfoDetail={userInfoDetail} />
+      {userInfoDetail ? (
+        <div>
+          <div>
+            <MyProfile userInfoDetail={userInfoDetail} />
+          </div>
+          <div>
+            <MyProject
+              userInfoDetail={userInfoDetail}
+              ProjectDelete={ProjectDelete}
+            />
+          </div>
+          <div>
+            <MyAppliedProjects userInfoDetail={userInfoDetail} />
+          </div>
         </div>
-        <div> 
-        <MyProject userInfoDetail={userInfoDetail} ProjectDelete={ProjectDelete}/>
-        </div>
-        <div> 
-        <MyAppliedProjects userInfoDetail={userInfoDetail} />
-        </div>
-      </div> :
-      'Loading...'
-      }
+      ) : (
+        "Loading..."
+      )}
     </div>
   );
 }

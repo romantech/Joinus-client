@@ -1,38 +1,43 @@
-import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
-import { setLoginStatus, setUserInfo } from '../actions/index';
-import Searchbox from './Searchbox';
-import '../styles/Nav.css';
-import Modal from './Modal';
-
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
+import PropTypes from "prop-types";
+import { setLoginStatus, setUserInfo } from "../actions/index";
+import Searchbox from "./Searchbox";
+import "../styles/Nav.css";
+import Modal from "./Modal";
+axios.defaults.withCredentials = true;
 export default function Nav({ isLogin }) {
+  const userInfo = useSelector((state) => state.userInfoReducer);
+  const { accessToken, source } = userInfo;
   const history = useHistory();
   const dispatch = useDispatch();
-
   const [modalOpen, setModalOpen] = useState(false);
   const closeModal = () => {
     setModalOpen(false);
-    history.push('/');
+    history.push("/");
   };
-
   const handleLogout = () => {
-    const joinusServer = 'https://server.joinus.fun/user/logout';
-    const testServer = 'https://localhost:4000/signout';
-
-    axios
-      .post(joinusServer, null, { withCredentials: true })
-      .then(res => {
-        // console.log('Nav-Logout', res.status);
+    const joinusServer = "https://server.joinus.fun/user/logout";
+    axios({
+      url: joinusServer,
+      method: "POST",
+      data: {
+        source: source,
+      },
+      headers: {
+        authorization: `Bearer ${accessToken}`,
+      },
+    })
+      .then((res) => {
+        console.log("Nav-Logout", res);
         dispatch(setLoginStatus(false));
-        dispatch(setUserInfo(''));
+        dispatch(setUserInfo(""));
         setModalOpen(true);
       })
-      .catch(error => console.log(error.message));
+      .catch((error) => console.log(error.message));
   };
-
   return (
     <div>
       <div id="nav-body">
@@ -71,13 +76,12 @@ export default function Nav({ isLogin }) {
             message="로그아웃에 성공했습니다"
           />
         ) : (
-          ''
+          ""
         )}
       </div>
     </div>
   );
 }
-
 Nav.propTypes = {
   isLogin: PropTypes.bool.isRequired,
 };

@@ -22,7 +22,7 @@ li {
 }
 .myProfile-border {
   width: 100%;
-  max-width: 480px;
+  max-width: 580px;
   padding: 20px;
   margin: 20px;
   display: flex;
@@ -33,16 +33,23 @@ li {
   box-shadow: 7px 3px 23px -2px rgb(0 0 0 / 30%);
 }
 .myProject_list {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   width: 470px;
   border: 1px solid #ddd;
   padding: 5px 15px;
   margin: 5px;
   border-radius: 10px;
 }
-.myProject_right button {
+.myProject_list > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.myProject_list h3 {
+  flex: 1;
+}
+.myProject_list > div > button,
+.modify,
+.project_list button {
   margin-left: 5px;
   border: none;
   background: cornflowerblue;
@@ -52,6 +59,7 @@ li {
   cursor: pointer;
   color: #fff;
   font-weight: 600;
+  font-size: 15px;
 }
 .popup {
   position: fixed;
@@ -97,7 +105,7 @@ li {
 }
 .applied-border {
   width: 100%;
-  max-width: 480px;
+  max-width: 580px;
   padding: 20px;
   display: flex;
   flex-direction: column;

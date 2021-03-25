@@ -1,30 +1,19 @@
-import React, { useState } from "react";
-import Volunteer_modal from "./MyProjects_modal";
-import Test from "./Test";
+import { Link } from "react-router-dom";
+import ProjectModal from "./ProjectModal";
 
 export default function Myprojects({ userInfoDetail, ProjectDelete }) {
-  //const [projectModal, setprojectModal] = useState(false);
-  let projectModal = false
-  const setprojectModal = function (projectModal) {return projectModal = !projectModal}
-
+  
   return (
     <div className="myProfile-body">
       <div className="myProfile-border">
         <h2>생성한 프로젝트</h2>
-        <div className="project_list">
           {userInfoDetail.myProject.map((list) => {
             return (
               <div key={list.projectId} className="myProject_list">
-                <span>{list.projectName}</span>
-                <div className="myProject_right">
-                  <button
-                    onClick={() => {
-                      setprojectModal(projectModal)
-                    }}
-                  >
-                    신청자 목록
-                  </button>
-                  <button>수정</button>
+                <div>
+                  <h3>{list.projectName}</h3>
+                  <ProjectModal key={list.projectId} projectId={list.projectId} />
+                  <Link className="modify" to={`/update/${list.projectId}`}>수정</Link>
                   <button
                     onClick={() => {
                       ProjectDelete(list.projectId);
@@ -32,16 +21,10 @@ export default function Myprojects({ userInfoDetail, ProjectDelete }) {
                   >
                     삭제
                   </button>
-                  <Volunteer_modal
-                    trigger={projectModal}
-                    setTrigger={setprojectModal}
-                    projectId={list.projectId}
-                  />
                 </div>
               </div>
             );
           })}
-        </div>
       </div>
     </div>
   );
