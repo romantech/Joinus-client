@@ -65,10 +65,10 @@ JOINUS란 ?
 ### 프로젝트 참여페이지/워크플로우
 ![attend_project](https://user-images.githubusercontent.com/70802487/112437515-60903980-8d8a-11eb-9de5-ba4318b60667.jpg)
 
-###프로젝트 회원가입/워크플로우
+### 프로젝트 회원가입/워크플로우
 ![signup_page](https://user-images.githubusercontent.com/70802487/112437519-6259fd00-8d8a-11eb-9855-fe1a8d22a133.jpg)
 
-###프로젝트 로그인/워크플로우
+### 프로젝트 로그인/워크플로우
 ![login_page](https://user-images.githubusercontent.com/70802487/112437525-638b2a00-8d8a-11eb-8973-42f3c15f9a84.jpg)
 
 
