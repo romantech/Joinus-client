@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
@@ -23,10 +24,12 @@ export default function Mypage() {
         userId,
         source,
       },
+      withCredentials: true,
     }).then(res => {
       setuserInfoDetail(res.data.data);
     });
   }, [myData]);
+
   const ProjectDelete = async projectId => {
     if (window.confirm('삭제하시겠습니다')) {
       await axios({
@@ -44,6 +47,7 @@ export default function Mypage() {
       });
     }
   };
+
   return (
     <div>
       {userInfoDetail ? (
@@ -62,7 +66,9 @@ export default function Mypage() {
           </div>
         </div>
       ) : (
-        'Loading...'
+        <div>
+          <img className="loading" src="../loading.gif" alt="loading" />
+        </div>
       )}
     </div>
   );

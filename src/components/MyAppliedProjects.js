@@ -1,67 +1,94 @@
-/* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-key */
 import React, { useState, useEffect } from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 
-export default function MyAppliedProjects({ userInfoDetail }) {
-  const [report, setReport] = useState(false);
-  const [show, setShow] = useState(false);
-  // 내가 지원한 프로젝트 목록
-  useEffect(() => {
-    Axios({
-      url: 'https://server.joinus.fun/project/attend',
+import { useSelector } from 'react-redux';
+
+export default function MyAppliedProjects() {
+  const [handleClick, setHandleClick] = useState(false);
+  const { accessToken, userId, source } = useSelector(
+    state => state.userInfoReducer.userInfo,
+  );
+  const [appliedProject, setAppliedProject] = useState(null);
+
+  const appliedProjects = async () => {
+    await axios({
+      url: 'https://server.joinus.fun/user/info',
       method: 'POST',
-      data: {
-        userId: 1,
-        projectId: 1,
-      },
       headers: {
-        Authentication: 12314, // redux state
-        'Content-Type': 'application/json',
+        authorization: `Bearer ${accessToken}`,
       },
+      data: {
+        userId,
+        source,
+      },
+      withCredentials: true,
     }).then(res => {
-      console.log(res);
+      setAppliedProject(res.data.data);
     });
-  }, []);
-  // 내가 지원한 프로젝트 취소
-  useEffect(() => {
-    Axios({
+  };
+
+  const cancelProject = async projectId => {
+    await axios({
       url: 'https://server.joinus.fun/project/cancel',
       method: 'POST',
       data: {
-        userId: 1,
-        projectId: 1,
+        userId,
+        projectId,
       },
       headers: {
-        Authentication: 12314, // redux state
-        'Content-Type': 'application/json',
+        authorization: `Bearer ${accessToken}`,
       },
-    }).then(res => {
-      console.log(res);
+      withCredentials: true,
+    }).then(() => {
+      setHandleClick(!handleClick);
     });
-  }, []);
-  return (
+  };
+
+  useEffect(appliedProjects, [handleClick]);
+
+  return appliedProject ? (
     <div className="myProfile-body">
       <div className="applied-border">
         <h2 style={{ textAlign: 'center' }}>지원한 프로젝트</h2>
-        <h3>지원현황</h3>
-        <div className="applied_report">
-          {show ? <p>회원님이 지원한 프로젝트를 취소했습니다.</p> : null}
-        </div>
-        <h3>프로젝트</h3>
-        <div>
-          {userInfoDetail.acceptProject.map(list => {
-            return (
-              <div className="volunteer_lists">
-                <h3>{list.projectName}</h3>
-                <button type="button" onClick={() => setShow(true)}>
-                  지원취소
-                </button>
-              </div>
-            );
-          })}
-        </div>
+        {appliedProject.waitingProject.map(list => {
+          return (
+            <div className="volunteer_lists">
+              <h3>{list.projectName}</h3>
+              <button
+                type="button"
+                onClick={() => {
+                  cancelProject(list.projectId);
+                }}
+              >
+                지원 취소
+              </button>
+            </div>
+          );
+        })}
+      </div>
+      <div className="applied-border">
+        <h2 style={{ textAlign: 'center' }}>합류한 프로젝트</h2>
+        {appliedProject.acceptProject.map(list => {
+          return (
+            <div className="volunteer_lists">
+              <h3>{list.projectName}</h3>
+            </div>
+          );
+        })}
+      </div>
+      <div className="applied-border">
+        <h2 style={{ textAlign: 'center' }}>거절된 프로젝트</h2>
+        {appliedProject.rejectProject.map(list => {
+          return (
+            <div className="volunteer_lists">
+              <h3>{list.projectName}</h3>
+            </div>
+          );
+        })}
       </div>
     </div>
+  ) : (
+    <div>Loading...</div>
   );
 }

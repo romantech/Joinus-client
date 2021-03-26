@@ -14,6 +14,7 @@ import Nav from './components/Nav';
 import Mypage from './pages/Mypage';
 import ProjectDetail from './components/ProjectDetail';
 import ProjectCreate from './components/ProjectCreate';
+import ProjectUpdate from './components/ProjectUpdate';
 
 export default function App() {
   const isLogin = useSelector(state => state.loginReducer.isLogin);
@@ -24,6 +25,7 @@ export default function App() {
         <Switch>
           <Route exact path="/" component={Main} />
           <Route exact path="/detail/:id" component={ProjectDetail} />
+          <Route exact path="/update/:id" component={ProjectUpdate} />
           <Route exact path="/create" component={ProjectCreate} />
           <Route
             exact

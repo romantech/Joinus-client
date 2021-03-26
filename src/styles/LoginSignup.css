@@ -35,7 +35,7 @@
 
 .inputLeftText {
   margin: auto 5px;
-  width: 90px;
+  width: 95px;
   text-align: right;
 }
 
@@ -75,15 +75,16 @@
   vertical-align: middle;
   display: inline-block;
   margin-left: 10px;
-  font-family: '나눔고딕', 'NanumGothic', '돋움', 'Dotum';
+  font-family: "나눔고딕", "NanumGothic", "돋움", "Dotum";
   font-weight: bold;
   font-size: 0.95rem;
 }
 
-input[type='text'],
-input[type='email'],
-input[type='text'],
-input[type='password'],
+input[type="text"],
+input[type="email"],
+input[type="text"],
+input[type="password"],
+input[type="file"],
 .btn-login,
 .btn-signup {
   width: 266px;
@@ -91,7 +92,7 @@ input[type='password'],
   font-size: 0.95rem;
   padding: 0.5rem;
   margin: 0.4rem;
-  font-family: 'Malgun Gothic';
+  font-family: "Malgun Gothic";
 }
 
 .alert-box {

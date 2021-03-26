@@ -1,19 +1,11 @@
-/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable react/prop-types */
 import React from 'react';
 
 export default function WriterDesc({ writer }) {
   return (
-    <div key={writer.id} className="writer">
-      <p className="writer-name"> 작성자 이름: {writer.name}</p>
-      <p className="writer-company"> 회사정보 : </p>
-      <p>
-        {' '}
-        이미지 파일
-        <img
-          className="writer-img"
-          src={writer.image} /* alt={project.projectName} */
-        />
-      </p>
+    <div key={writer.id} className="crtWriter">
+      <p className="writer-name"> 작성자 이름: {writer.userName}</p>
+      <p className="writer-company"> </p>
     </div>
   );
 }

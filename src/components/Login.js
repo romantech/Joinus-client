@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
@@ -20,7 +21,6 @@ const Login = () => {
     errorMsg: '',
   });
 
-  // 로그인 성공시 모달 테스트
   const [modalOpen, setModalOpen] = useState(false);
   const closeModal = () => {
     setModalOpen(false);
@@ -36,9 +36,7 @@ const Login = () => {
     });
   };
 
-  console.log('modal: ', modalOpen);
   useEffect(() => {
-    console.log('isLogin: ', isLogin);
     if (isLogin) {
       return () => dispatch(setLoginStatus(true));
     }
@@ -84,8 +82,6 @@ const Login = () => {
 
     try {
       const res = await axios.post(joinusServer, { userEmail, password });
-      // console.log(res)
-      // dispatch(setLoginStatus(true));
       dispatch(setUserInfo(res.data.data));
       setSignInInfo({
         ...singInInfo,
@@ -93,7 +89,6 @@ const Login = () => {
       });
       setModalOpen(true);
     } catch (error) {
-      // console.dir(error.message);
       return !error.response
         ? setSignInInfo({
             ...singInInfo,
@@ -121,7 +116,6 @@ const Login = () => {
   };
 
   const inlineBlockStyle = { display: 'inline-block' };
-  console.log('다시 렌더링');
 
   return (
     <div className="loginContainer">

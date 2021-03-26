@@ -25,7 +25,7 @@ export default function Nav({ isLogin }) {
 
   const handleLogout = () => {
     const joinusServer = 'https://server.joinus.fun/user/logout';
-    const testServer = 'https://localhost:4000/signout';
+    // const testServer = 'https://localhost:4000/signout';
 
     axios
       .post(
@@ -96,7 +96,6 @@ export default function Nav({ isLogin }) {
     </div>
   );
 }
-
 Nav.propTypes = {
   isLogin: PropTypes.bool.isRequired,
 };
