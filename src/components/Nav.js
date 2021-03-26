@@ -48,11 +48,15 @@ export default function Nav({ isLogin }) {
       .catch(error => console.log(error.message));
   };
 
+  const clickHandler = () => {
+    window.location.replace('/');
+  };
+
   return (
     <div>
       <div id="nav-body">
         <span id="title">
-          <Link id="titleName" to="/">
+          <Link id="titleName" to="/" onClick={clickHandler}>
             <img id="logo" src="../logo.png" alt="logo" />
           </Link>
         </span>

@@ -5,7 +5,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ProjectList from './ProjectList';
-import { setProjectList } from '../actions/index';
+import { setProjectList, fetchData } from '../actions/index';
 
 export default function ProjectAll() {
   const projects = useSelector(state => state.projectReducer.projects);
@@ -37,10 +37,11 @@ export default function ProjectAll() {
     });
   });
 
-  console.log(matched);
+  // console.log(projects);
 
-  return !projects ? (
-    <div>Loading...</div>
+  const style = { margin: '30px' };
+  return !projects.length ? (
+    <div style={style}>로딩중...</div>
   ) : (
     <div className="projects">
       <h2>현재 진행중인 프로젝트</h2>

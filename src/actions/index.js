@@ -6,6 +6,16 @@ export const SET_TAG = 'SET_TAG';
 export const SET_PROJECTLIST = 'SET_PROJECTLIST';
 
 // * 액션 생성 함수
+export const fetchData = (api, action) => dispatch => {
+  console.log(api, dispatch);
+  return fetch(api)
+    .then(res => res.json())
+    .then(data => {
+      dispatch(action(data));
+    })
+    .catch(err => console.log(err));
+};
+
 export const addNewProject = (
   projectId,
   projectName,
