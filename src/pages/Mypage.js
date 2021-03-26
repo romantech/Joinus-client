@@ -27,7 +27,7 @@ export default function Mypage() {
       setuserInfoDetail(res.data.data);
     });
   }, [myData]);
-  
+
   const ProjectDelete = async (projectId) => {
     if (window.confirm("삭제하시겠습니다")) {
       await axios({
@@ -64,7 +64,9 @@ export default function Mypage() {
           </div>
         </div>
       ) : (
-        "Loading..."
+        <div>
+          <img className="loading" src="../loading.gif" alt="loading" />
+        </div>
       )}
     </div>
   );

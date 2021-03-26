@@ -104,7 +104,7 @@ const Login = () => {
 
   const socialLoginHandler = () => {
     const GOOGLE_LOGIN_URL =
-      "https://accounts.google.com/o/oauth2/auth?client_id=928822058916-4cl3iej3veoov69s7jq64limd02bpdak.apps.googleusercontent.com&redirect_uri=https://localhost:3000/login&scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile&response_type=code&access_type=offline";
+      "https://accounts.google.com/o/oauth2/auth?client_id=928822058916-4cl3iej3veoov69s7jq64limd02bpdak.apps.googleusercontent.com&redirect_uri=https://joinus.fun/login&scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile&response_type=code&access_type=offline";
     window.location.assign(GOOGLE_LOGIN_URL);
   };
 

@@ -13,6 +13,8 @@
   display: flex;
   align-items: center;
   width: 600px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .crtLeft {
   display: flex;
@@ -40,4 +42,16 @@
   background-color: #f9dc5c;
   font-size: 15px;
   cursor: pointer;
+}
+
+.project-deadline {
+  margin-left: 6px;
+  width: 266px;
+  height: 34px;
+  padding-left: 10px;
+  font-size: 1rem;
+}
+
+.invisable {
+  display: none;
 }

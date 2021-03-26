@@ -6,9 +6,10 @@ import { useSelector  } from 'react-redux';
 import { Link } from 'react-router-dom';
 export default function ProjectDetail({ match }) {
   const [projectInfo, setProjectInfo] = useState("");
-  const { userId, accessToken } = useSelector(
+  const { userId, userName, accessToken } = useSelector(
     (state) => state.userInfoReducer.userInfo
   );
+  console.log(userName)
   const isLogin = useSelector(state => state.loginReducer.isLogin);
   const [isToggle , setIsToggle ] = useState(true)
   const projectId = match.params.id;
@@ -39,16 +40,17 @@ export default function ProjectDetail({ match }) {
         },
       }).then(() => {/*alert("참가 완료")*/});
   };
-  // const update = async () => {
-  //   try{
-  //     const response
-  //   }
-  // }
   return !projectInfo ? (
-    <div>loading</div>
+    <div>
+      <img
+        className="loading"
+        src="../loading.gif"
+        alt="loading"
+      />
+    </div>
   ) : (
     <div className="projectDetails">
-      <Link className="link" to="/">리스트로 돌아가기</Link>
+      <Link className="linkBack" to="/">리스트로 돌아가기</Link>
       {(!isLogin) ? (
         <div> 로그인 후 참가 가능합니다.</div>
       ) : (
@@ -62,7 +64,9 @@ export default function ProjectDetail({ match }) {
           참가하기
           {/* {isToggle ? '참가하기' :'참가완료'}  */}
         </button>
-        <Link to={`/update/${projectId}`}> 수정하기 </Link>
+        {(userName === projectInfo.data.writeUser) ?
+        <Link className="linkUpdate" to={`/update/${projectId}`}>수정하기</Link>
+        :  ""}
       </div>
       )}
       <div className="projectDetail">

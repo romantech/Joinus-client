@@ -21,10 +21,11 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "start": "HTTPS=true SSL_CRT_FILE='./cert.pem' SSL_KEY_FILE='./key.pem' react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "uploadObj": "aws s3 sync ./build s3://$npm_package_config_BUCKETNAME"
   },
   "browserslist": {
     "production": [
@@ -37,5 +38,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "config": {
+    "BUCKETNAME": "project-joinus"
   }
 }

@@ -71,6 +71,7 @@
   align-items: center;
   margin-left: 10px;
   width: 55%;
+  overflow: auto;
 }
 .pjDescription-dsec {
   display: flex;
@@ -93,4 +94,46 @@
   background-color: #f9dc5c;
   font-size: 15px;
   cursor: pointer;
+}
+.linkBack {
+  position: relative;
+  margin: 10px;
+  padding: 5px 10px;
+  border: black;
+  border-radius: 15px;
+  color: #fff;
+  background-color: #524955;
+  font-size: 15px;
+  cursor: pointer;
+}
+.linkUpdate {
+  position: relative;
+  margin: 10px;
+  padding: 5px 10px;
+  border: black;
+  border-radius: 15px;
+  color: #303441;
+  background-color: #f9dc5c;
+  font-size: 15px;
+  cursor: pointer;
+}
+.linkCreate {
+  position: relative;
+  margin: 10px;
+  padding: 5px 30px;
+  border: black;
+  border-radius: 15px;
+  color: #fff;
+  background-color: #e43a40;
+  font-size: 16px;
+  cursor: pointer;
+}
+.linkcrt {
+  text-align: center;
+}
+.loading {
+  width: 200px;
+}
+.stack {
+  margin-right: 5px;
 }

@@ -33,9 +33,16 @@ export default function ProjectAll() {
       return clickedTag.some(data => data === e);
     });
   });
-  
-  return !projects ? (
-    <div>Loading...</div>
+
+  const style = { margin: '30px' };
+  return projects.length === 0 ? (
+    <div style={style}>
+      <img
+        className="loading"
+        src="../loading.gif"
+        alt="loading"
+      />
+    </div>
   ) : (
     <div className="projects">
       <h2>현재 진행중인 프로젝트</h2>

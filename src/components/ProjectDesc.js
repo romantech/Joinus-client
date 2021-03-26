@@ -21,7 +21,11 @@ export default function ProjectDesc({ project }) {
         <div className="pjright projectName"> {project.projectName}</div></div>
         <div className="pjDescription"> 
         <span className="pjleft">사용 스택</span> 
-        <div className="pjright project-stacks">{project.stacks}</div></div>
+        <div className="pjright project-stacks">
+          {project.stacks.map((stack)=>{
+            return ( <div className="stack" key={stack}>{stack}</div>)
+          })}
+        </div></div>
         <div className="pjDescription"> 
         <span className="pjleft">참가 기간</span> 
         <div className="pjright project-attendExpired">{project.attendExpired}</div></div>

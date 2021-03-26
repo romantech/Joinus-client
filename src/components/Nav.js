@@ -7,18 +7,24 @@ import { setLoginStatus, setUserInfo } from "../actions/index";
 import Searchbox from "./Searchbox";
 import "../styles/Nav.css";
 import Modal from "./Modal";
+
 axios.defaults.withCredentials = true;
+
 export default function Nav({ isLogin }) {
   const userInfo = useSelector((state) => state.userInfoReducer);
   const { accessToken, source } = userInfo;
+
   const history = useHistory();
   const dispatch = useDispatch();
+
   const [modalOpen, setModalOpen] = useState(false);
   const closeModal = () => {
     setModalOpen(false);
     history.push("/");
   };
+
   const handleLogout = () => {
+    console.log('로갓')
     const joinusServer = "https://server.joinus.fun/user/logout";
     axios({
       url: joinusServer,
@@ -38,11 +44,16 @@ export default function Nav({ isLogin }) {
       })
       .catch((error) => console.log(error.message));
   };
+
+  const clickHandler = () => {
+    window.location.replace("/");
+  };
+
   return (
     <div>
       <div id="nav-body">
         <span id="title">
-          <Link id="titleName" to="/">
+          <Link id="titleName" to="/" onClick={clickHandler}>
             <img id="logo" src="../logo.png" alt="logo" />
           </Link>
         </span>
