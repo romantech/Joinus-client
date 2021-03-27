@@ -13,7 +13,7 @@ import {
   validateKoreanName,
 } from '../utils/validate';
 import '../styles/LoginSignup.css';
-import Modal from './Modal';
+import Modal from '../components/Modal';
 
 axios.defaults.withCredentials = true;
 

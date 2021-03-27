@@ -8,9 +8,9 @@ import {
   Redirect,
 } from 'react-router-dom';
 import Main from './pages/Main';
-import Login from './components/Login';
-import Signup from './components/Signup';
-import Nav from './components/Nav';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import Nav from './pages/Nav';
 import Mypage from './pages/Mypage';
 import ProjectDetail from './components/ProjectDetail';
 import ProjectCreate from './components/ProjectCreate';

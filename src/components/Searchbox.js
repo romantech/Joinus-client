@@ -28,11 +28,12 @@ const Searchbox = () => {
   };
 
   useEffect(() => {
-    if (resData.length) {
-      setTimeout(() => {
-        dispatch(setProjectList(resData));
-      }, 1000);
-    }
+    dispatch(setProjectList(resData));
+    // if (resData.length) {
+    //   setTimeout(() => {
+    //     dispatch(setProjectList(resData));
+    //   }, 1000);
+    // }
   }, [resData]);
 
   return (

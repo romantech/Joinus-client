@@ -1,9 +1,15 @@
-import { createStore } from 'redux';
+/* eslint-disable no-unused-vars */
+import { applyMiddleware, createStore } from 'redux';
+import { logger } from 'redux-logger';
+import ReduxThunk from 'redux-thunk';
 import { persistStore } from 'redux-persist';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from '../reducers/index';
 
-export const store = createStore(rootReducer, composeWithDevTools());
-export const persistor = persistStore(store);
+const middlewares = [ReduxThunk, logger];
 
-export default { store, persistor };
+export const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(ReduxThunk)),
+);
+export const persistor = persistStore(store);

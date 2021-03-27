@@ -4,9 +4,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { setLoginStatus, setUserInfo } from '../actions/index';
-import Searchbox from './Searchbox';
+import Searchbox from '../components/Searchbox';
 import '../styles/Nav.css';
-import Modal from './Modal';
+import Modal from '../components/Modal';
 
 axios.defaults.withCredentials = true;
 
@@ -57,7 +57,7 @@ export default function Nav({ isLogin }) {
       <div id="nav-body">
         <span id="title">
           <Link id="titleName" to="/" onClick={clickHandler}>
-            <img id="logo" src="../logo.png" alt="logo" />
+            <img id="logo" src="/logo.png" alt="logo" />
           </Link>
         </span>
         <div id="menu">

@@ -89,6 +89,8 @@ export default function MyAppliedProjects() {
       </div>
     </div>
   ) : (
-    <div>Loading...</div>
+    <div>
+      <img height="100" width="100" src="/loading.gif" alt="loading" />
+    </div>
   );
 }

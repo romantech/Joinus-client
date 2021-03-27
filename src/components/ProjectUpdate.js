@@ -76,7 +76,7 @@ export default function ProjectCreate({ match }) {
   };
   return !projectInfo ? (
     <div>
-      <img className="loading" src="../loading.gif" alt="loading" />
+      <img height="100" width="100" src="/loading.gif" alt="loading" />
     </div>
   ) : (
     <div className="projectCreate">

@@ -46,7 +46,13 @@ export default function ProjectDetail({ match }) {
   };
   return !projectInfo ? (
     <div>
-      <img className="loading" src="../loading.gif" alt="loading" />
+      <img
+        height="100"
+        width="100"
+        className="loading"
+        src="/loading.gif"
+        alt="loading"
+      />
     </div>
   ) : (
     <div className="projectDetails">

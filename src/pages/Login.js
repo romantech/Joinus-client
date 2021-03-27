@@ -6,7 +6,7 @@ import axios from 'axios';
 import { setLoginStatus, setUserInfo } from '../actions/index';
 import '../styles/LoginSignup.css';
 import { validateEmail, validatePassword } from '../utils/validate';
-import Modal from './Modal';
+import Modal from '../components/Modal';
 
 axios.defaults.withCredentials = true;
 

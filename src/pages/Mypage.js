@@ -67,7 +67,12 @@ export default function Mypage() {
         </div>
       ) : (
         <div>
-          <img className="loading" src="../loading.gif" alt="loading" />
+          <img
+            height="100"
+            width="100"
+            src={`${process.env.PUBLIC_URL}/loading.gif`}
+            alt="loading"
+          />
         </div>
       )}
     </div>

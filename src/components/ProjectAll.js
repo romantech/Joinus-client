@@ -1,12 +1,10 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/no-array-index-key */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/ProjectListMain.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ProjectList from './ProjectList';
-import { setProjectList, fetchData } from '../actions/index';
+import { setProjectList } from '../actions/index';
 
 export default function ProjectAll() {
   const projects = useSelector(state => state.projectReducer.projects);
@@ -15,19 +13,29 @@ export default function ProjectAll() {
   const dispatch = useDispatch();
 
   // console.log(clickedTag);
-
+  const [fetchStatus, setFetchStatus] = useState(true);
   const joinusServer = 'https://server.joinus.fun/project/all';
+
   useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const response = await axios.get(joinusServer);
-        dispatch(setProjectList(response.data.data));
-      } catch (e) {
-        console.log(e);
+    console.log('이팩트1', projects.length);
+    if (!projects.length) {
+      const fetchProjects = async () => {
+        try {
+          const response = await axios.get(joinusServer);
+          dispatch(setProjectList(response.data.data));
+        } catch (e) {
+          console.log(e);
+        }
+      };
+      fetchProjects();
+    }
+    return () => {
+      console.log('클린업1', projects.length);
+      if (projects.length) {
+        setFetchStatus(false);
       }
     };
-    fetchProjects();
-  }, []);
+  }, [projects]);
 
   const matched = projects.filter(el => {
     if (!el.stack.length) {
@@ -40,9 +48,14 @@ export default function ProjectAll() {
 
   // console.log(projects);
 
-  const style = { margin: '30px' };
-  return !projects.length ? (
-    <div style={style}>로딩중...</div>
+  console.log('렌더');
+  return fetchStatus ? (
+    <img
+      height="100"
+      width="100"
+      src={`${process.env.PUBLIC_URL}/loading.gif`}
+      alt="loading"
+    />
   ) : (
     <div className="projects">
       <h2>현재 진행중인 프로젝트</h2>
@@ -50,11 +63,11 @@ export default function ProjectAll() {
       <div className="project-list">
         {/* {console.log('프로젝트리스트', projects)} */}
         {!clickedTag.length
-          ? projects.map((project, idx) => (
-              <ProjectList project={project} key={idx} />
+          ? projects.map(project => (
+              <ProjectList project={project} key={project.projectId} />
             ))
-          : matched.map((project, idx) => (
-              <ProjectList project={project} key={idx} />
+          : matched.map(project => (
+              <ProjectList project={project} key={project.projectId} />
             ))}
         {!matched.length && clickedTag.length ? (
           <h3 className="projectAll-H3">
