@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/ProjectListMain.css';
-import axios from 'axios';
+// import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ProjectList from './ProjectList';
-import { setProjectList } from '../actions/index';
+import { setProjectList, fetchData } from '../actions/index';
 
 export default function ProjectAll() {
   const projects = useSelector(state => state.projectReducer.projects);
@@ -15,26 +15,20 @@ export default function ProjectAll() {
   // console.log(clickedTag);
   const [fetchStatus, setFetchStatus] = useState(true);
   const joinusServer = 'https://server.joinus.fun/project/all';
+  // const testServer = 'https://localhost:4000/project/all';
 
   useEffect(() => {
-    console.log('이팩트1', projects.length);
+    console.log('이펙트1');
     if (!projects.length) {
-      const fetchProjects = async () => {
-        try {
-          const response = await axios.get(joinusServer);
-          dispatch(setProjectList(response.data.data));
-        } catch (e) {
-          console.log(e);
-        }
-      };
-      fetchProjects();
+      dispatch(fetchData(joinusServer, setProjectList));
     }
-    return () => {
-      console.log('클린업1', projects.length);
-      if (projects.length) {
-        setFetchStatus(false);
-      }
-    };
+  }, []);
+
+  useEffect(() => {
+    console.log('이펙트2');
+    if (projects.length) {
+      setFetchStatus(false);
+    }
   }, [projects]);
 
   const matched = projects.filter(el => {
@@ -46,15 +40,14 @@ export default function ProjectAll() {
     });
   });
 
-  // console.log(projects);
-
-  console.log('렌더');
-  return fetchStatus ? (
+  console.log('렌더', fetchStatus);
+  return fetchStatus || !projects.length ? (
     <img
-      height="100"
-      width="100"
+      height="60"
+      width="60"
       src={`${process.env.PUBLIC_URL}/loading.gif`}
       alt="loading"
+      style={{ margin: '30px' }}
     />
   ) : (
     <div className="projects">
@@ -78,3 +71,40 @@ export default function ProjectAll() {
     </div>
   );
 }
+
+/* eslint-disable */
+  // * useEffect 과정
+  // 렌더
+    // 이펙트 실행(첫 마운트)
+  // 렌더
+    // 클린업(다음 이펙트 실행전 렌더)
+    // 이펙트 실행 -> store 상태 변경
+  // 렌더(구독하는 store 상태 변경돼서 다시 렌더)
+    // 클린업 -> fetchStatus 상태 변경(useState)
+    // 이펙트
+  // 렌더(클린업 함수가 컴포넌트 상태를 업데이트 했으므로)
+  /* eslint-enable */
+
+// useEffect(() => {
+//   // console.log('이팩트', projects.length, fetchStatus);
+//   if (projects.length) {
+//     setFetchStatus(false);
+//   } else {
+//     const fetchProjects = async () => {
+//       try {
+//         const response = await axios.get(joinusServer);
+//         dispatch(setProjectList(response.data.data));
+//       } catch (err) {
+//         console.log(err);
+//       }
+//     };
+//     fetchProjects();
+//   }
+//   // return () => {
+//   //   console.log('클린업1-1', projects.length, fetchStatus);
+//   //   if (projects.length) {
+//   //     // console.log('클린업1-2', projects.length, fetchStatus);
+//   //     setFetchStatus(false);
+//   //   }
+//   // };
+// }, [projects]);

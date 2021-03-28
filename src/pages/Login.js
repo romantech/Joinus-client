@@ -25,6 +25,7 @@ const Login = () => {
   const closeModal = () => {
     setModalOpen(false);
     history.push('/');
+    // window.location.replace('/'); // 페이지 변경(뒤로가기 x)
   };
 
   const { userEmail, password, errorMsg, isLogin } = singInInfo;

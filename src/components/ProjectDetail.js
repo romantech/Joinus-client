@@ -47,9 +47,9 @@ export default function ProjectDetail({ match }) {
   return !projectInfo ? (
     <div>
       <img
-        height="100"
-        width="100"
-        className="loading"
+        style={{ margin: '30px' }}
+        height="60"
+        width="60"
         src="/loading.gif"
         alt="loading"
       />

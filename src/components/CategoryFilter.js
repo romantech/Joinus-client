@@ -25,6 +25,7 @@ const CategoryFilter = () => {
   };
 
   useEffect(() => {
+    // console.log('이펙트1');
     setClickTag({
       ...clickedTag,
       renderData: handleRenderData(clickedTag.active),
@@ -32,6 +33,7 @@ const CategoryFilter = () => {
   }, [clickedTag.active]);
 
   useEffect(() => {
+    // console.log('이펙트2');
     dispatch(setRenderData(clickedTag.renderData));
   }, [clickedTag.renderData]);
 
@@ -56,6 +58,7 @@ const CategoryFilter = () => {
     });
   };
 
+  // console.log('렌더');
   return (
     <div>
       <div className="category-container">
