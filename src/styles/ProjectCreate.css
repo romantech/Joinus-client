@@ -1,0 +1,57 @@
+.projectCreate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #e4e5ed;
+  width: 100%;
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 10px;
+  border-radius: 10px;
+}
+.crtProject {
+  display: flex;
+  align-items: center;
+  width: 600px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.crtLeft {
+  display: flex;
+  justify-content: flex-start;
+  width: 130px;
+  margin-right: 10px;
+}
+.project-desc {
+  width: 400px;
+  height: 150px;
+  resize: vertical;
+  font-size: 0.95rem;
+  padding: 0.5rem;
+  margin: 0.4rem;
+  font-family: "Malgun Gothic";
+}
+.createbtn {
+  position: relative;
+  margin: 5px;
+  line-height: 30px;
+  padding: 0 10px;
+  border: black;
+  border-radius: 15px;
+  color: #303441;
+  background-color: #f9dc5c;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.project-deadline {
+  margin-left: 6px;
+  width: 266px;
+  height: 34px;
+  padding-left: 10px;
+  font-size: 1rem;
+}
+
+.invisable {
+  display: none;
+}

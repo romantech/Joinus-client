@@ -1,0 +1,139 @@
+.projectDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #e4e5ed;
+  width: 800px;
+  margin: 10px auto;
+  padding: 10px;
+  border-radius: 10px;
+}
+.projectDetail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #e4e5ed;
+  width: 750px;
+  margin: 10px auto;
+  padding: 10px;
+  border-radius: 10px;
+}
+.projectDesc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.writerContainer {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  width: 600px;
+  margin: 10px;
+  padding: 10px;
+}
+.pjContainer {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  width: 600px;
+  margin: 10px;
+  padding: 10px;
+}
+.pjwriter {
+  display: flex;
+  align-items: center;
+  margin: 5px;
+  padding: 5px;
+  margin-left: 10px;
+  border-radius: 5px;
+}
+.pjDescription {
+  display: flex;
+  align-items: center;
+  margin: 5px;
+  padding: 10px;
+  margin-left: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+.pjleft {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 45%;
+  margin-right: 10px;
+}
+.pjright {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 10px;
+  width: 55%;
+  overflow: auto;
+}
+.pjDescription-dsec {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  padding: 10px;
+  margin-left: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+.attendbtn,
+.updatebtn {
+  position: relative;
+  margin: 5px;
+  line-height: 30px;
+  padding: 0 10px;
+  border: black;
+  border-radius: 15px;
+  color: #303441;
+  background-color: #f9dc5c;
+  font-size: 15px;
+  cursor: pointer;
+}
+.linkBack {
+  position: relative;
+  margin: 10px;
+  padding: 5px 10px;
+  border: black;
+  border-radius: 15px;
+  color: #fff;
+  background-color: #524955;
+  font-size: 15px;
+  cursor: pointer;
+}
+.linkUpdate {
+  position: relative;
+  margin: 10px;
+  padding: 5px 10px;
+  border: black;
+  border-radius: 15px;
+  color: #303441;
+  background-color: #f9dc5c;
+  font-size: 15px;
+  cursor: pointer;
+}
+.linkCreate {
+  position: relative;
+  margin: 10px;
+  padding: 5px 30px;
+  border: black;
+  border-radius: 15px;
+  color: #fff;
+  background-color: #e43a40;
+  font-size: 16px;
+  cursor: pointer;
+}
+.linkcrt {
+  text-align: center;
+}
+.loading {
+  width: 200px;
+}
+.stack {
+  margin-right: 5px;
+}
