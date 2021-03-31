@@ -16,6 +16,7 @@ import ProjectDetail from './components/ProjectDetail';
 import ProjectCreate from './components/ProjectCreate';
 import ProjectUpdate from './components/ProjectUpdate';
 
+console.log('signup');
 export default function App() {
   const isLogin = useSelector(state => state.loginReducer.isLogin);
   return (
