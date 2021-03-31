@@ -43,3 +43,5 @@ export default function App() {
     </div>
   );
 }
+
+console.log('dev');
