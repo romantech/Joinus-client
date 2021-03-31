@@ -17,7 +17,11 @@ import ProjectCreate from './components/ProjectCreate';
 import ProjectUpdate from './components/ProjectUpdate';
 
 export default function App() {
+<<<<<<< HEAD
   console.log('Hello World30');
+=======
+  console.log('Hello World31');
+>>>>>>> test31
   const isLogin = useSelector(state => state.loginReducer.isLogin);
   return (
     <div className="App">
