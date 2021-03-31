@@ -17,6 +17,7 @@ import ProjectCreate from './components/ProjectCreate';
 import ProjectUpdate from './components/ProjectUpdate';
 
 console.log('signup');
+console.log('signup2');
 export default function App() {
   console.log('login');
   console.log('login2');
