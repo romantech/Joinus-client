@@ -11,17 +11,20 @@ export default function ProjectDetail({ match }) {
   const { userId, userName, accessToken } = useSelector(
     state => state.userInfoReducer.userInfo,
   );
-  console.log(userName);
+
   const isLogin = useSelector(state => state.loginReducer.isLogin);
 
   const projectId = match.params.id;
-  const joinusServer = 'https://server.joinus.fun/project/info';
+
   useEffect(() => {
     const fetchProjectInfo = async () => {
       try {
-        const response = await axios.post(joinusServer, {
-          projectId,
-        });
+        const response = await axios.post(
+          `${process.env.REACT_APP_BASE_URL}/project/info`,
+          {
+            projectId,
+          },
+        );
         setProjectInfo(response.data);
       } catch (e) {
         console.log('에러', e);
@@ -31,7 +34,7 @@ export default function ProjectDetail({ match }) {
   }, []);
   const attend = async () => {
     await axios({
-      url: 'https://server.joinus.fun/project/attend',
+      url: `${process.env.REACT_APP_BASE_URL}/project/attend`,
       method: 'POST',
       headers: {
         authorization: accessToken,

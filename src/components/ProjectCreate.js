@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import '../styles/ProjectCreate.css';
 
@@ -27,7 +26,7 @@ export default function ProjectCreate() {
       <iframe title="iframe" name="frAttachFiles" className="invisable" />
       <h1> 프로젝트 생성 페이지 </h1>
       <form
-        action="https://server.joinus.fun/upload"
+        action={`${process.env.REACT_APP_BASE_URL}/upload`}
         method="post"
         className="projectCreate CRTdescribtion"
         target="frAttachFiles"

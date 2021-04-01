@@ -17,8 +17,7 @@ import ProjectCreate from './components/ProjectCreate';
 import ProjectUpdate from './components/ProjectUpdate';
 
 export default function App() {
-  console.log('feature');
-  console.log('feature02');
+  console.log('### 현재모드: ', process.env.NODE_ENV);
   const isLogin = useSelector(state => state.loginReducer.isLogin);
   return (
     <div className="App">
@@ -45,5 +44,3 @@ export default function App() {
     </div>
   );
 }
-
-console.log('dev');

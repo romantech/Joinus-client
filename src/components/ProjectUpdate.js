@@ -17,7 +17,7 @@ export default function ProjectCreate({ match }) {
     const fetchProjectInfo = async () => {
       try {
         const response = await axios.post(
-          'https://server.joinus.fun/project/info',
+          `${process.env.REACT_APP_BASE_URL}/project/info`,
           {
             projectId,
           },
@@ -46,10 +46,9 @@ export default function ProjectCreate({ match }) {
     }
     setErrorMessage('');
 
-    const joinusServer = 'https://server.joinus.fun/project/update';
     axios
       .post(
-        joinusServer,
+        `${process.env.REACT_APP_BASE_URL}/project/update`,
         {
           userId: userInfo.userId,
           level: '',
