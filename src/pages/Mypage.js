@@ -15,7 +15,7 @@ export default function Mypage() {
   );
   useEffect(() => {
     axios({
-      url: 'https://server.joinus.fun/user/info',
+      url: `${process.env.REACT_APP_BASE_URL}/user/info`,
       method: 'POST',
       headers: {
         authorization: `Bearer ${accessToken}`,
@@ -33,7 +33,7 @@ export default function Mypage() {
   const ProjectDelete = async projectId => {
     if (window.confirm('삭제하시겠습니다')) {
       await axios({
-        url: 'https://server.joinus.fun/project/delete',
+        url: `${process.env.REACT_APP_BASE_URL}/project/delete`,
         method: 'POST',
         data: {
           userId,
@@ -68,8 +68,8 @@ export default function Mypage() {
       ) : (
         <div>
           <img
-            height="100"
-            width="100"
+            height="60"
+            width="60"
             src={`${process.env.PUBLIC_URL}/loading.gif`}
             alt="loading"
           />

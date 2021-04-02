@@ -15,7 +15,7 @@ export default function ProjectList({ project }) {
         {isRender ? (
           <img
             className="project-img"
-            src={`https://server.joinus.fun/${project.thumbnail}`}
+            src={`${process.env.REACT_APP_BASE_URL}/${project.thumbnail}`}
             alt="thumbnail"
           />
         ) : (

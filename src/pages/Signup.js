@@ -1,5 +1,5 @@
 /* eslint-disable consistent-return */
-/* eslint-disable no-unused-vars */
+
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
@@ -16,6 +16,8 @@ import '../styles/LoginSignup.css';
 import Modal from '../components/Modal';
 
 axios.defaults.withCredentials = true;
+const joinusServer = 'https://server-j.colorfilter.cloud';
+const testServer = 'https://localhost:4000';
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -48,7 +50,7 @@ const Signup = () => {
   useEffect(() => {
     if (isLogin) {
       axios
-        .post('https://server.joinus.fun/user/login', {
+        .post(`${joinusServer}/user/login`, {
           userEmail,
           password,
         })
@@ -91,7 +93,6 @@ const Signup = () => {
   };
 
   const handleSignup = async () => {
-    const joinusServer = 'https://server.joinus.fun/user/signup';
     if (!userEmail || !password || !userName) {
       return setSignUpInfo({
         ...singUpInfo,
@@ -105,7 +106,7 @@ const Signup = () => {
       });
     }
     try {
-      const res = await axios.post(joinusServer, {
+      const res = await axios.post(`${joinusServer}/user/signup`, {
         userEmail,
         password,
         userName,

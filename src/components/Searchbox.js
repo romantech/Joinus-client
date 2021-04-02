@@ -14,7 +14,7 @@ const Searchbox = () => {
   const searchProject = () => {
     history.push('/');
     axios({
-      url: 'https://server.joinus.fun/project/search',
+      url: `${process.env.REACT_APP_BASE_URL}/project/search`,
       method: 'POST',
       data: {
         dropBox,

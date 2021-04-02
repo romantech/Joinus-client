@@ -17,7 +17,7 @@ import ProjectCreate from './components/ProjectCreate';
 import ProjectUpdate from './components/ProjectUpdate';
 
 export default function App() {
-  console.log('Hello World11');
+  console.log('### 현재모드: ', process.env.NODE_ENV);
   const isLogin = useSelector(state => state.loginReducer.isLogin);
   return (
     <div className="App">
