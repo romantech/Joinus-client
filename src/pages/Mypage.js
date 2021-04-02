@@ -7,9 +7,6 @@ import MyProject from '../components/MyProjects';
 import MyAppliedProjects from '../components/MyAppliedProjects';
 import '../styles/MyPage.css';
 
-const joinusServer = 'https://server-j.colorfilter.cloud';
-const testServer = 'https://localhost:4000';
-
 export default function Mypage() {
   const [userInfoDetail, setuserInfoDetail] = useState();
   const [myData, setmyData] = useState(false);
@@ -18,7 +15,7 @@ export default function Mypage() {
   );
   useEffect(() => {
     axios({
-      url: `${joinusServer}/user/info`,
+      url: `${process.env.REACT_APP_BASE_URL}/user/info`,
       method: 'POST',
       headers: {
         authorization: `Bearer ${accessToken}`,
@@ -36,7 +33,7 @@ export default function Mypage() {
   const ProjectDelete = async projectId => {
     if (window.confirm('삭제하시겠습니다')) {
       await axios({
-        url: `${joinusServer}/project/delete`,
+        url: `${process.env.REACT_APP_BASE_URL}/project/delete`,
         method: 'POST',
         data: {
           userId,
