@@ -16,7 +16,7 @@ export default function ProjectAll() {
   const [fetchStatus, setFetchStatus] = useState(true);
 
   useEffect(() => {
-    console.log('이펙트1');
+    // console.log('이펙트1');
     if (!projects.length) {
       dispatch(
         fetchData(
@@ -25,10 +25,10 @@ export default function ProjectAll() {
         ),
       );
     }
-  }, []);
+  }, [dispatch, projects.length]);
 
   useEffect(() => {
-    console.log('이펙트2');
+    // console.log('이펙트2');
     if (projects.length) {
       setFetchStatus(false);
     }
@@ -43,7 +43,7 @@ export default function ProjectAll() {
     });
   });
 
-  console.log('렌더', fetchStatus);
+  // console.log('렌더', fetchStatus);
   return fetchStatus || !projects.length ? (
     <img
       height="60"

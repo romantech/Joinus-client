@@ -10,9 +10,6 @@ import Modal from '../components/Modal';
 
 axios.defaults.withCredentials = true;
 
-const joinusServer = 'https://server-j.colorfilter.cloud';
-const testServer = 'https://localhost:4000';
-
 export default function Nav({ isLogin }) {
   const userInfo = useSelector(state => state.userInfoReducer);
   const { accessToken, source } = userInfo;
@@ -29,7 +26,7 @@ export default function Nav({ isLogin }) {
   const handleLogout = () => {
     axios
       .post(
-        `${joinusServer}/user/logout`,
+        `${process.env.REACT_APP_BASE_URL}/user/logout`,
         {
           data: source,
         },

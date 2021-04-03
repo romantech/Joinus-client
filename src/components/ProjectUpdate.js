@@ -28,7 +28,7 @@ export default function ProjectCreate({ match }) {
       }
     };
     fetchProjectInfo();
-  }, []);
+  }, [projectId]);
   const [errorMessage, setErrorMessage] = useState('');
   const handleInputValue = key => e => {
     console.log(e.target.value);
