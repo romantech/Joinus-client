@@ -7,7 +7,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from '../reducers/index';
 // import myLogger from '../middlewares/myLogger';
 
-const middlewares = [ReduxThunk, logger];
+const middlewares =
+  process.env.NODE_ENV === 'development' ? [ReduxThunk, logger] : [ReduxThunk];
 
 export const store = createStore(
   rootReducer,
