@@ -34,7 +34,7 @@ const Searchbox = () => {
     //     dispatch(setProjectList(resData));
     //   }, 1000);
     // }
-  }, [resData]);
+  }, [dispatch, resData]);
 
   return (
     <div className="search-bar">

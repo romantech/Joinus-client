@@ -25,7 +25,7 @@ export default function ProjectAll() {
         ),
       );
     }
-  }, []);
+  }, [dispatch, projects.length]);
 
   useEffect(() => {
     console.log('이펙트2');

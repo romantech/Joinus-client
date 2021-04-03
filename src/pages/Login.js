@@ -41,7 +41,7 @@ const Login = () => {
     if (isLogin) {
       return () => dispatch(setLoginStatus(true));
     }
-  }, [isLogin]);
+  }, [dispatch, isLogin]);
 
   useEffect(() => {
     const url = new URL(window.location.href);
@@ -56,15 +56,14 @@ const Login = () => {
           // console.log(res);
           // dispatch(setLoginStatus(true));
           dispatch(setUserInfo(res.data));
-          setSignInInfo({
-            ...singInInfo,
-            isLogin: true,
+          setSignInInfo(state => {
+            return { ...state, isLogin: true };
           });
           setModalOpen(true);
         })
         .catch(error => console.log(error.message));
     }
-  }, []);
+  }, [dispatch]);
 
   const handleLogin = async () => {
     if (!userEmail || !password) {

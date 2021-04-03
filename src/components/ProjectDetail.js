@@ -31,7 +31,7 @@ export default function ProjectDetail({ match }) {
       }
     };
     fetchProjectInfo();
-  }, []);
+  }, [projectId]);
   const attend = async () => {
     await axios({
       url: `${process.env.REACT_APP_BASE_URL}/project/attend`,

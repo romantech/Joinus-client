@@ -16,8 +16,6 @@ import '../styles/LoginSignup.css';
 import Modal from '../components/Modal';
 
 axios.defaults.withCredentials = true;
-const joinusServer = 'https://server-j.colorfilter.cloud';
-const testServer = 'https://localhost:4000';
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -50,7 +48,7 @@ const Signup = () => {
   useEffect(() => {
     if (isLogin) {
       axios
-        .post(`${joinusServer}/user/login`, {
+        .post(`${process.env.REACT_APP_BASE_URL}/user/login`, {
           userEmail,
           password,
         })
@@ -60,7 +58,7 @@ const Signup = () => {
         .catch(error => console.log(error.message));
       return () => dispatch(setLoginStatus(true));
     }
-  }, [isLogin]);
+  }, [dispatch, isLogin, password, userEmail]);
 
   const [modalOpen, setModalOpen] = useState(false);
   const closeModal = () => {
@@ -106,7 +104,7 @@ const Signup = () => {
       });
     }
     try {
-      const res = await axios.post(`${joinusServer}/user/signup`, {
+      await axios.post(`${process.env.REACT_APP_BASE_URL}/user/signup`, {
         userEmail,
         password,
         userName,

@@ -28,7 +28,7 @@ export default function Mypage() {
     }).then(res => {
       setuserInfoDetail(res.data.data);
     });
-  }, [myData]);
+  }, [accessToken, myData, source, userId]);
 
   const ProjectDelete = async projectId => {
     if (window.confirm('삭제하시겠습니다')) {
