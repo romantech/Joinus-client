@@ -14,18 +14,21 @@ export default function ProjectAll() {
 
   // console.log(clickedTag);
   const [fetchStatus, setFetchStatus] = useState(true);
-  const joinusServer = 'https://server.joinus.fun/project/all';
-  // const testServer = 'https://localhost:4000/project/all';
 
   useEffect(() => {
-    console.log('이펙트1');
+    // console.log('이펙트1');
     if (!projects.length) {
-      dispatch(fetchData(joinusServer, setProjectList));
+      dispatch(
+        fetchData(
+          `${process.env.REACT_APP_BASE_URL}/project/all`,
+          setProjectList,
+        ),
+      );
     }
-  }, []);
+  }, [dispatch, projects.length]);
 
   useEffect(() => {
-    console.log('이펙트2');
+    // console.log('이펙트2');
     if (projects.length) {
       setFetchStatus(false);
     }
@@ -40,7 +43,7 @@ export default function ProjectAll() {
     });
   });
 
-  console.log('렌더', fetchStatus);
+  // console.log('렌더', fetchStatus);
   return fetchStatus || !projects.length ? (
     <img
       height="60"

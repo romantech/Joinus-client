@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-key */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -13,7 +14,7 @@ export default function MyAppliedProjects() {
 
   const appliedProjects = async () => {
     await axios({
-      url: 'https://server.joinus.fun/user/info',
+      url: `${process.env.REACT_APP_BASE_URL}/user/info`,
       method: 'POST',
       headers: {
         authorization: `Bearer ${accessToken}`,
@@ -30,7 +31,7 @@ export default function MyAppliedProjects() {
 
   const cancelProject = async projectId => {
     await axios({
-      url: 'https://server.joinus.fun/project/cancel',
+      url: `${process.env.REACT_APP_BASE_URL}/project/cancel`,
       method: 'POST',
       data: {
         userId,

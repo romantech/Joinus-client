@@ -5,12 +5,13 @@ import ReduxThunk from 'redux-thunk';
 import { persistStore } from 'redux-persist';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from '../reducers/index';
-import myLogger from '../middlewares/myLogger';
+// import myLogger from '../middlewares/myLogger';
 
-const middlewares = [ReduxThunk, logger];
+const middlewares =
+  process.env.NODE_ENV === 'development' ? [ReduxThunk, logger] : [ReduxThunk];
 
 export const store = createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(ReduxThunk, logger)),
+  composeWithDevTools(applyMiddleware(...middlewares)),
 );
 export const persistor = persistStore(store);

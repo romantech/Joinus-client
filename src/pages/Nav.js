@@ -24,12 +24,9 @@ export default function Nav({ isLogin }) {
   };
 
   const handleLogout = () => {
-    const joinusServer = 'https://server.joinus.fun/user/logout';
-    // const testServer = 'https://localhost:4000/signout';
-
     axios
       .post(
-        joinusServer,
+        `${process.env.REACT_APP_BASE_URL}/user/logout`,
         {
           data: source,
         },

@@ -1,5 +1,5 @@
 /* eslint-disable consistent-return */
-/* eslint-disable no-unused-vars */
+
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
@@ -48,7 +48,7 @@ const Signup = () => {
   useEffect(() => {
     if (isLogin) {
       axios
-        .post('https://server.joinus.fun/user/login', {
+        .post(`${process.env.REACT_APP_BASE_URL}/user/login`, {
           userEmail,
           password,
         })
@@ -58,7 +58,7 @@ const Signup = () => {
         .catch(error => console.log(error.message));
       return () => dispatch(setLoginStatus(true));
     }
-  }, [isLogin]);
+  }, [dispatch, isLogin, password, userEmail]);
 
   const [modalOpen, setModalOpen] = useState(false);
   const closeModal = () => {
@@ -91,7 +91,6 @@ const Signup = () => {
   };
 
   const handleSignup = async () => {
-    const joinusServer = 'https://server.joinus.fun/user/signup';
     if (!userEmail || !password || !userName) {
       return setSignUpInfo({
         ...singUpInfo,
@@ -105,7 +104,7 @@ const Signup = () => {
       });
     }
     try {
-      const res = await axios.post(joinusServer, {
+      await axios.post(`${process.env.REACT_APP_BASE_URL}/user/signup`, {
         userEmail,
         password,
         userName,

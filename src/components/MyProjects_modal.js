@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 /* eslint-disable camelcase */
 /* eslint-disable react/jsx-key */
@@ -16,7 +17,7 @@ export default function MyProjects_modal(props) {
 
   useEffect(async () => {
     await axios({
-      url: 'https://server.joinus.fun/project/participant',
+      url: `${process.env.REACT_APP_BASE_URL}/project/participant`,
       method: 'POST',
       headers: {
         authorization: accessToken,
@@ -32,7 +33,7 @@ export default function MyProjects_modal(props) {
 
   const accept = async userEmail => {
     await axios({
-      url: 'https://server.joinus.fun/project/accept',
+      url: `${process.env.REACT_APP_BASE_URL}/project/accept`,
       method: 'POST',
       headers: {
         authorization: `Bearer ${accessToken}`,
@@ -50,7 +51,7 @@ export default function MyProjects_modal(props) {
 
   const reject = async userEmail => {
     await axios({
-      url: 'https://server.joinus.fun/project/reject',
+      url: `${process.env.REACT_APP_BASE_URL}/project/reject`,
       method: 'POST',
       headers: {
         authorization: accessToken,

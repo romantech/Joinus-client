@@ -26,16 +26,19 @@ const CategoryFilter = () => {
 
   useEffect(() => {
     // console.log('이펙트1');
-    setClickTag({
-      ...clickedTag,
-      renderData: handleRenderData(clickedTag.active),
+    // setClickTag({
+    //   ...clickedTag,
+    //   renderData: handleRenderData(clickedTag.active),
+    // });
+    setClickTag(state => {
+      return { ...state, renderData: handleRenderData(clickedTag.active) };
     });
   }, [clickedTag.active]);
 
   useEffect(() => {
     // console.log('이펙트2');
     dispatch(setRenderData(clickedTag.renderData));
-  }, [clickedTag.renderData]);
+  }, [clickedTag.renderData, dispatch]);
 
   const angleDownHandler = () => {
     setAngleDown(!angleDown);
