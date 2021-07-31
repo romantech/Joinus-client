@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable camelcase */
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 export default function MyProfile({ userInfoDetail }) {
   const [userPhoto, setuserPhoto] = useState(
