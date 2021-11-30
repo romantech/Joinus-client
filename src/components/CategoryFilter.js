@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import categoryList from '../utils/categoryList';
 import { setRenderData } from '../actions/index';
 
-const CategoryFilter = () => {
+const CategoryFilter = function () {
   const { stacks, levels } = categoryList;
   const [angleDown, setAngleDown] = useState(true);
   const [tagMouseOver, setTagMouseOver] = useState('');

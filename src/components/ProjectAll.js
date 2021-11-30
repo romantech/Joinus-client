@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ProjectList from './ProjectList';
 import { setProjectList, fetchData } from '../actions/index';
 
-export default function ProjectAll() {
+const ProjectAll = function () {
   const projects = useSelector(state => state.projectReducer.projects);
   const clickedTag = useSelector(state => state.tagDataReducer.renderData);
   const isLogin = useSelector(state => state.loginReducer.isLogin);
@@ -73,7 +73,7 @@ export default function ProjectAll() {
       </div>
     </div>
   );
-}
+};
 
 /* eslint-disable */
   // * useEffect 과정
@@ -111,3 +111,5 @@ export default function ProjectAll() {
 //   //   }
 //   // };
 // }, [projects]);
+
+export default ProjectAll;

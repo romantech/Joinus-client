@@ -2,7 +2,7 @@ import React from 'react';
 import CategoryFilter from '../components/CategoryFilter';
 import ProjectAll from '../components/ProjectAll';
 
-const Main = () => {
+const Main = function () {
   return (
     <div>
       <h2>모두를 위한 프로젝트 플랫폼 JOINUS</h2>

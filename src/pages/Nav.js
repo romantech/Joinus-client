@@ -10,10 +10,9 @@ import Modal from '../components/Modal';
 
 axios.defaults.withCredentials = true;
 
-export default function Nav({ isLogin }) {
+const Nav = function ({ isLogin }) {
   const userInfo = useSelector(state => state.userInfoReducer);
   const { accessToken, source } = userInfo;
-
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -92,7 +91,9 @@ export default function Nav({ isLogin }) {
       </div>
     </div>
   );
-}
+};
 Nav.propTypes = {
   isLogin: PropTypes.bool.isRequired,
 };
+
+export default Nav;

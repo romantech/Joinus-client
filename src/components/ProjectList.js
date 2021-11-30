@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function ProjectList({ project }) {
+const ProjectList = function ({ project }) {
   let isRender = false;
 
   if (project.thumbnail.length > 0) {
@@ -30,4 +30,6 @@ export default function ProjectList({ project }) {
       </p>
     </div>
   );
-}
+};
+
+export default ProjectList;

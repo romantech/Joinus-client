@@ -16,7 +16,7 @@ import ProjectDetail from './components/ProjectDetail';
 import ProjectCreate from './components/ProjectCreate';
 import ProjectUpdate from './components/ProjectUpdate';
 
-export default function App() {
+const App = function () {
   // console.log('### 현재모드: ', process.env.NODE_ENV);
   const isLogin = useSelector(state => state.loginReducer.isLogin);
   return (
@@ -43,4 +43,6 @@ export default function App() {
       </Router>
     </div>
   );
-}
+};
+
+export default App;

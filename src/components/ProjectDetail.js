@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ProjectDesc from './ProjectDesc';
 
-export default function ProjectDetail({ match }) {
+const ProjectDetail = function ({ match }) {
   const [projectInfo, setProjectInfo] = useState('');
   const { userId, userName, accessToken } = useSelector(
     state => state.userInfoReducer.userInfo,
@@ -94,4 +94,6 @@ export default function ProjectDetail({ match }) {
       </div>
     </div>
   );
-}
+};
+
+export default ProjectDetail;

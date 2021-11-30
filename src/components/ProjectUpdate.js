@@ -2,11 +2,10 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/ProjectCreate.css';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import CategoryFilter from './CategoryFilter';
 
-export default function ProjectCreate({ match }) {
+const ProjectCreate = function ({ match, history }) {
   const userInfo = useSelector(state => state.userInfoReducer.userInfo);
   const stacksInfo = useSelector(state => state.tagDataReducer.renderData);
   const [projectInfo, setProjectInfo] = useState(null);
@@ -34,7 +33,7 @@ export default function ProjectCreate({ match }) {
     console.log(e.target.value);
     setProjectInfo({ ...projectInfo, [key]: e.target.value });
   };
-  const history = useHistory();
+
   const handleCreate = () => {
     if (
       !projectInfo.projectName ||
@@ -129,4 +128,6 @@ export default function ProjectCreate({ match }) {
       {errorMessage ? <div className="alert-box">{errorMessage}</div> : ''}
     </div>
   );
-}
+};
+
+export default ProjectCreate;

@@ -4,7 +4,7 @@
 import React, { useState } from 'react';
 import Volunteer_modal from './MyProjects_modal';
 
-export default function ProjectModal({ projectId }) {
+const ProjectModal = function ({ projectId }) {
   const [modalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
@@ -24,4 +24,6 @@ export default function ProjectModal({ projectId }) {
       </Volunteer_modal>
     </div>
   );
-}
+};
+
+export default ProjectModal;

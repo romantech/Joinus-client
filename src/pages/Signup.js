@@ -17,7 +17,7 @@ import Modal from '../components/Modal';
 
 axios.defaults.withCredentials = true;
 
-const Signup = () => {
+const Signup = function () {
   const dispatch = useDispatch();
   const history = useHistory();
 

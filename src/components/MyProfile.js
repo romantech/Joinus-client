@@ -4,7 +4,7 @@
 /* eslint-disable camelcase */
 import React, { useState } from 'react';
 
-export default function MyProfile({ userInfoDetail }) {
+const MyProfile = function ({ userInfoDetail }) {
   const [userPhoto, setuserPhoto] = useState(
     'https://upload.wikimedia.org/wikipedia/commons/7/7e/Circle-icons-profile.svg',
   );
@@ -41,4 +41,6 @@ export default function MyProfile({ userInfoDetail }) {
       </div>
     </div>
   );
-}
+};
+
+export default MyProfile;

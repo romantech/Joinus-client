@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/Modal.css';
 import PropTypes from 'prop-types';
 
-const Modal = ({ open, close, message }) => {
+const Modal = function ({ open, close, message }) {
   return (
     <div className={open ? 'openModal modal' : 'modal'}>
       {open ? (

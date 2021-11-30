@@ -3,7 +3,7 @@ import { SET_USER_INFO } from '../actions/index';
 import { initialState } from './initialState';
 
 // 이니셜 상태 임포트
-const userInfoReducer = (state = initialState, action) => {
+const userInfoReducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case SET_USER_INFO:
       return { ...state, userInfo: action.payload };

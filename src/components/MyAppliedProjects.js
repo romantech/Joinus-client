@@ -5,7 +5,7 @@ import axios from 'axios';
 
 import { useSelector } from 'react-redux';
 
-export default function MyAppliedProjects() {
+const MyAppliedProjects = function () {
   const [handleClick, setHandleClick] = useState(false);
   const { accessToken, userId, source } = useSelector(
     state => state.userInfoReducer.userInfo,
@@ -54,7 +54,10 @@ export default function MyAppliedProjects() {
         <h2 style={{ textAlign: 'center' }}>지원한 프로젝트</h2>
         {appliedProject.waitingProject.map(list => {
           return (
-            <div className="volunteer_lists">
+            <div
+              key={Math.random().toString(36).slice(2)}
+              className="volunteer_lists"
+            >
               <h3>{list.projectName}</h3>
               <button
                 type="button"
@@ -72,7 +75,10 @@ export default function MyAppliedProjects() {
         <h2 style={{ textAlign: 'center' }}>합류한 프로젝트</h2>
         {appliedProject.acceptProject.map(list => {
           return (
-            <div className="volunteer_lists">
+            <div
+              key={Math.random().toString(36).slice(2)}
+              className="volunteer_lists"
+            >
               <h3>{list.projectName}</h3>
             </div>
           );
@@ -82,7 +88,10 @@ export default function MyAppliedProjects() {
         <h2 style={{ textAlign: 'center' }}>거절된 프로젝트</h2>
         {appliedProject.rejectProject.map(list => {
           return (
-            <div className="volunteer_lists">
+            <div
+              key={Math.random().toString(36).slice(2)}
+              className="volunteer_lists"
+            >
               <h3>{list.projectName}</h3>
             </div>
           );
@@ -100,4 +109,6 @@ export default function MyAppliedProjects() {
       />
     </div>
   );
-}
+};
+
+export default MyAppliedProjects;

@@ -3,7 +3,7 @@
 import React from 'react';
 import '../styles/ProjectDesc.css';
 
-export default function ProjectDesc({ project }) {
+const ProjectDesc = function ({ project }) {
   return (
     <div key={project.projectId} className="projectDesc">
       <div className="writerContainer">
@@ -12,10 +12,6 @@ export default function ProjectDesc({ project }) {
           <span className="pjleft">작성자 이름</span>
           <div className="pjright writerName">{project.writeUser}</div>
         </div>
-        {/* <div className="pjwriter"> 
-          <span className="pjleft">프로젝트 회사 </span>
-          <div className="pjright writer-company"> {project.writeUser}</div>
-        </div> */}
       </div>
       <div className="pjContainer">
         <span>프로젝트 설명</span>
@@ -52,4 +48,6 @@ export default function ProjectDesc({ project }) {
       </div>
     </div>
   );
-}
+};
+
+export default ProjectDesc;

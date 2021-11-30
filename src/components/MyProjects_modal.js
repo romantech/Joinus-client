@@ -6,8 +6,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-export default function MyProjects_modal(props) {
-  const { open, close, header } = props;
+const MyProjects_modal = function (props) {
+  const { open, close, header, children } = props;
 
   const [volunteer, setVolunteer] = useState([]);
   const [handleClick, setHandleClick] = useState(false);
@@ -23,7 +23,7 @@ export default function MyProjects_modal(props) {
         authorization: accessToken,
       },
       data: {
-        projectId: props.children,
+        projectId: children,
       },
       withCredentials: true,
     }).then(res => {
@@ -40,7 +40,7 @@ export default function MyProjects_modal(props) {
       },
       data: {
         attendUserEmail: userEmail,
-        projectId: props.children,
+        projectId: children,
         source,
       },
       withCredentials: true,
@@ -58,7 +58,7 @@ export default function MyProjects_modal(props) {
       },
       data: {
         attendUserEmail: userEmail,
-        projectId: props.children,
+        projectId: children,
       },
       withCredentials: true,
     }).then(() => {
@@ -112,4 +112,6 @@ export default function MyProjects_modal(props) {
       ) : null}
     </div>
   );
-}
+};
+
+export default MyProjects_modal;

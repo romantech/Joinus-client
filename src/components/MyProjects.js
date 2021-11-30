@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ProjectModal from './ProjectModal';
 
-export default function Myprojects({ userInfoDetail, ProjectDelete }) {
+const Myprojects = function ({ userInfoDetail, ProjectDelete }) {
   return (
     <div className="myProfile-body">
       <div className="myProfile-border">
@@ -32,4 +32,6 @@ export default function Myprojects({ userInfoDetail, ProjectDelete }) {
       </div>
     </div>
   );
-}
+};
+
+export default Myprojects;

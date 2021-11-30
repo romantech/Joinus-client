@@ -6,20 +6,12 @@ import { useSelector } from 'react-redux';
 
 import CategoryFilter from './CategoryFilter';
 
-export default function ProjectCreate() {
+const ProjectCreate = function () {
   const userInfo = useSelector(state => state.userInfoReducer.userInfo);
   const stacksInfo = useSelector(state => state.tagDataReducer.renderData);
 
+  // eslint-disable-next-line no-unused-vars
   const [errorMessage, setErrorMessage] = useState('');
-  const [projectInfo, setProjectInfo] = useState({
-    projectName: '',
-    attendExpired: '',
-    projectDesc: '',
-    image_urls: '',
-  });
-  const handleInputValue = key => e => {
-    setProjectInfo({ ...projectInfo, [key]: e.target.value });
-  };
 
   return (
     <div className="projectCreate">
@@ -42,9 +34,13 @@ export default function ProjectCreate() {
           <input
             name="projectStacks"
             className="invisable"
-            value={stacksInfo}
+            defaultValue={stacksInfo}
           />
-          <input name="userId" className="invisable" value={userInfo.userId} />
+          <input
+            name="userId"
+            className="invisable"
+            defaultValue={userInfo.userId}
+          />
           <CategoryFilter />
         </div>
         <div className="crtProject">
@@ -77,4 +73,6 @@ export default function ProjectCreate() {
       {errorMessage ? <div className="alert-box">{errorMessage}</div> : ''}
     </div>
   );
-}
+};
+
+export default ProjectCreate;

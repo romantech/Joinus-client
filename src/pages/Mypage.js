@@ -7,7 +7,7 @@ import MyProject from '../components/MyProjects';
 import MyAppliedProjects from '../components/MyAppliedProjects';
 import '../styles/MyPage.css';
 
-export default function Mypage() {
+const Mypage = function () {
   const [userInfoDetail, setuserInfoDetail] = useState();
   const [myData, setmyData] = useState(false);
   const { userId, accessToken, source } = useSelector(
@@ -77,4 +77,6 @@ export default function Mypage() {
       )}
     </div>
   );
-}
+};
+
+export default Mypage;

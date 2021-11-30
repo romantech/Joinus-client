@@ -10,7 +10,7 @@ import Modal from '../components/Modal';
 
 axios.defaults.withCredentials = true;
 
-const Login = () => {
+const Login = function () {
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -109,9 +109,8 @@ const Login = () => {
 
   const socialLoginHandler = () => {
     const endPoint = 'https://accounts.google.com/o/oauth2/auth?';
-    const clientId =
-      'client_id=123070242990-pj2g9b65rbcvrmbaahb4ilsurtlh9a8i.apps.googleusercontent.com';
-    const redirect = `&redirect_uri=${process.env.REACT_APP_REDIRECT_URL}/login`; // TODO 배포시 수정 요망
+    const clientId = `client_id=${process.env.REACT_APP_CLIENT_ID}`;
+    const redirect = `&redirect_uri=${process.env.REACT_APP_REDIRECT_URL}/login`;
     const responseType = '&response_type=code';
     const accessType = '&access_type=offline';
     const scope = '&scope=email%20profile';

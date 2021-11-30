@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setProjectList } from '../actions/index';
 
-const Searchbox = () => {
+const Searchbox = function () {
   const history = useHistory();
   const [searchValue, setSearchValue] = useState('');
   const [resData, setresData] = useState([]);
