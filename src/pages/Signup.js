@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable consistent-return */
 
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useHistory, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { setLoginStatus, setUserInfo } from '../actions/index';
 import {
@@ -17,9 +18,8 @@ import Modal from '../components/Modal';
 
 axios.defaults.withCredentials = true;
 
-const Signup = function () {
+const Signup = function ({ history }) {
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const [singUpInfo, setSignUpInfo] = useState({
     userEmail: '',

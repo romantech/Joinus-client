@@ -30,7 +30,6 @@ const ProjectCreate = function ({ match, history }) {
   }, [projectId]);
   const [errorMessage, setErrorMessage] = useState('');
   const handleInputValue = key => e => {
-    console.log(e.target.value);
     setProjectInfo({ ...projectInfo, [key]: e.target.value });
   };
 

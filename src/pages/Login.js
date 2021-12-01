@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable consistent-return */
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useHistory, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { setLoginStatus, setUserInfo } from '../actions/index';
 import '../styles/LoginSignup.css';
@@ -10,8 +11,7 @@ import Modal from '../components/Modal';
 
 axios.defaults.withCredentials = true;
 
-const Login = function () {
-  const history = useHistory();
+const Login = function ({ history }) {
   const dispatch = useDispatch();
 
   const [singInInfo, setSignInInfo] = useState({
@@ -110,14 +110,15 @@ const Login = function () {
   const socialLoginHandler = () => {
     const endPoint = 'https://accounts.google.com/o/oauth2/auth?';
     const clientId = `client_id=${process.env.REACT_APP_CLIENT_ID}`;
-    const redirect = `&redirect_uri=${process.env.REACT_APP_REDIRECT_URL}/login`;
+    const redirect = `&redirect_uri=${process.env.REACT_APP_REDIRECT_URL}`;
     const responseType = '&response_type=code';
     const accessType = '&access_type=offline';
     const scope = '&scope=email%20profile';
     window.location.assign(
       endPoint + clientId + redirect + responseType + accessType + scope,
     );
-    // access_type을 offline으로 설정해야 refresh token 발급 가능(유저가 브라우저에 머무르지 않은 상태여도 토큰 발행 가능)
+    // access_type을 offline으로 설정해야 refresh token 발급 가능
+    // 유저가 브라우저에 머무르지 않은 상태여도 토큰 발행 가능
   };
 
   const inlineBlockStyle = { display: 'inline-block' };

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import './styles/App.css';
 import React from 'react';
 import { useSelector } from 'react-redux';
@@ -31,11 +32,19 @@ const App = function () {
           <Route
             exact
             path={['/login', '/mypage', '/signup']}
-            render={({ pathname: path = window.location.pathname }) => {
-              if (path === '/login')
-                return isLogin ? <Redirect to="/mypage" /> : <Login />;
-              if (path === '/signup')
-                return isLogin ? <Redirect to="/mypage" /> : <Signup />;
+            render={routerProps => {
+              if (routerProps.match.path === '/login')
+                return isLogin ? (
+                  <Redirect to="/mypage" />
+                ) : (
+                  <Login {...routerProps} />
+                );
+              if (routerProps.match.path === '/signup')
+                return isLogin ? (
+                  <Redirect to="/mypage" />
+                ) : (
+                  <Signup {...routerProps} />
+                );
               return isLogin ? <Mypage /> : <Redirect to="/login" />;
             }}
           />

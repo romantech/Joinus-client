@@ -35,8 +35,8 @@ const Nav = function ({ isLogin }) {
           },
         },
       )
-      .then(res => {
-        console.log('Nav-Logout', res.status);
+      .then(() => {
+        // console.log('Nav-Logout', res.status);
         dispatch(setLoginStatus(false));
         dispatch(setUserInfo(''));
         setModalOpen(true);
