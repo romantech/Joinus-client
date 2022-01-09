@@ -22,7 +22,7 @@
     "web-vitals": "^2.1.2"
   },
   "config": {
-    "BUCKETNAME": "joinus.colorfilter.cloud"
+    "BUCKETNAME": "joinus.romantech.net"
   },
   "scripts": {
     "start": "HTTPS=true SSL_CRT_FILE='./cert.pem' SSL_KEY_FILE='./key.pem' react-scripts start",
@@ -31,7 +31,8 @@
     "eject": "react-scripts eject",
     "rmObj": "aws s3 rm s3://$npm_package_config_BUCKETNAME --recursive",
     "lsObj": "aws s3 ls s3://$npm_package_config_BUCKETNAME",
-    "uploadObj": "aws s3 sync ./build s3://$npm_package_config_BUCKETNAME"
+    "syncObj": "aws s3 sync ./build s3://$npm_package_config_BUCKETNAME --delete",
+    "updateCache": "aws cloudfront create-invalidation --distribution-id E2OFMX135ZYFQ7 --paths '/*'"
   },
   "browserslist": {
     "production": [
